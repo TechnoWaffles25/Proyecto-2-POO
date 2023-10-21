@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -198,7 +199,6 @@ public class MenuConfiguracion extends javax.swing.JFrame {
 
         btnIniciar.setBackground(new java.awt.Color(153, 255, 0));
         btnIniciar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnIniciar.setForeground(new java.awt.Color(0, 0, 0));
         btnIniciar.setText("Iniciar");
         btnIniciar.setToolTipText("");
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +209,6 @@ public class MenuConfiguracion extends javax.swing.JFrame {
 
         btnPausar.setBackground(new java.awt.Color(153, 204, 255));
         btnPausar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnPausar.setForeground(new java.awt.Color(0, 0, 0));
         btnPausar.setText("Pausa");
         btnPausar.setToolTipText("");
         btnPausar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +219,6 @@ public class MenuConfiguracion extends javax.swing.JFrame {
 
         btnDetener.setBackground(new java.awt.Color(255, 51, 51));
         btnDetener.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnDetener.setForeground(new java.awt.Color(0, 0, 0));
         btnDetener.setText("Detener");
         btnDetener.setToolTipText("");
         btnDetener.addActionListener(new java.awt.event.ActionListener() {
@@ -343,7 +341,6 @@ public class MenuConfiguracion extends javax.swing.JFrame {
         comboLado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Izquierda", "Derecha" }));
 
         btnSALIR.setBackground(new java.awt.Color(255, 51, 51));
-        btnSALIR.setForeground(new java.awt.Color(0, 0, 0));
         btnSALIR.setSelected(true);
         btnSALIR.setText("Salir");
         btnSALIR.addActionListener(new java.awt.event.ActionListener() {
@@ -369,8 +366,9 @@ public class MenuConfiguracion extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(toggleSonido))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(toggleSonido)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -430,30 +428,60 @@ public class MenuConfiguracion extends javax.swing.JFrame {
     }//GEN-LAST:event_toggleSonidoActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        if (comboReloj.getSelectedIndex() == 0){
-            System.out.println("Timer inicio");
-            
-            Instant tiempoInicio = Instant.now();
-            
-            // Revisame si el timer es null y creamos uno nuevo para volver a empezar el cronometro
-            if (timer == null) {
-                timer = new Timer(true);
-            }
-        
-            timer.scheduleAtFixedRate(new TimerTask(){
-                @Override
-                public void run(){
-                    Instant now = Instant.now();
-                    tiempoTranscurrido = Duration.between(tiempoInicio,now);
-                    updateTimerLabel();
-                }
-            }, 0, 1000);
-            btnIniciar.setEnabled(false);
-            
-        } if (comboReloj.getSelectedIndex() == 1){
-            System.out.println("Timer inicio");
-            
+        if (comboReloj.getSelectedIndex() == 0) {
+        System.out.println("Timer inicio");
+
+        Instant tiempoInicio = Instant.now();
+
+        if (timer == null) {
+            timer = new Timer(true);
         }
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                Instant now = Instant.now();
+                tiempoTranscurrido = Duration.between(tiempoInicio, now);
+                updateTimerLabel();
+            }
+        }, 0, 1000);
+        btnIniciar.setEnabled(false);
+
+    } else if (comboReloj.getSelectedIndex() == 1) {
+        System.out.println("Timer inicio");
+
+        int pHoras = comboHoras.getSelectedIndex();
+        int pMinutos = comboMinutos.getSelectedIndex();
+        int pSegundos = comboSegundos.getSelectedIndex();
+
+        tiempoTranscurrido = Duration.ofHours(pHoras).plusMinutes(pMinutos).plusSeconds(pSegundos);
+
+        Instant tiempoInicio = Instant.now().plus(tiempoTranscurrido);
+
+        if (timer == null) {
+            timer = new Timer(true);
+        } else {
+            // If the timer was previously canceled, create a new instance
+            timer = new Timer(true);
+        }
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                Instant now = Instant.now();
+                tiempoTranscurrido = Duration.between(now, tiempoInicio);
+                updateTimerLabel();
+
+                if (tiempoTranscurrido.isNegative() || tiempoTranscurrido.isZero()) {
+                    JOptionPane.showMessageDialog(rootPane, "Se acabo el tiempo!");
+                    timer.cancel();
+                    btnIniciar.setEnabled(true);
+                }
+            }
+        }, 0, 1000);
+
+        btnIniciar.setEnabled(false);
+    }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausarActionPerformed

@@ -15,7 +15,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        windowConfig = new javax.swing.JButton();
+        windowJugar = new javax.swing.JButton();
+        windowConfig1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -25,13 +26,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("KenKen: Juego Aritmético");
 
-        windowConfig.setBackground(new java.awt.Color(204, 204, 204));
-        windowConfig.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        windowConfig.setForeground(new java.awt.Color(51, 51, 51));
-        windowConfig.setText("CONFIGURACION");
-        windowConfig.addActionListener(new java.awt.event.ActionListener() {
+        windowJugar.setBackground(new java.awt.Color(204, 204, 204));
+        windowJugar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        windowJugar.setForeground(new java.awt.Color(51, 51, 51));
+        windowJugar.setText("JUGAR");
+        windowJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                windowConfigActionPerformed(evt);
+                windowJugarActionPerformed(evt);
+            }
+        });
+
+        windowConfig1.setBackground(new java.awt.Color(204, 204, 204));
+        windowConfig1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        windowConfig1.setForeground(new java.awt.Color(51, 51, 51));
+        windowConfig1.setText("CONFIGURACION");
+        windowConfig1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                windowConfig1ActionPerformed(evt);
             }
         });
 
@@ -45,18 +56,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGap(140, 140, 140)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(windowConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(148, 148, 148)
+                        .addComponent(windowJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(141, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(627, Short.MAX_VALUE)
+                    .addComponent(windowConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(131, 131, 131)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(162, 162, 162)
-                .addComponent(windowConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(windowJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(345, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(92, 92, 92)
+                    .addComponent(windowConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(348, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -77,21 +98,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void windowConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowConfigActionPerformed
-        String workingDirectory = System.getProperty("user.dir");
-        File file = new File(workingDirectory, "config.dat");
+    private void windowJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowJugarActionPerformed
         
-        if (file.exists()){
-            int pregunta = JOptionPane.showConfirmDialog(null, "Tiene un juego guardado, si entra a la configuracion se borrara ese juego, desea continuar?", "ADVERTENCIA", JOptionPane.YES_NO_OPTION);
-            if (pregunta == JOptionPane.YES_OPTION){
-                MenuConfiguracion guiConfig = new MenuConfiguracion();
-                guiConfig.setVisible(true);
-            }
-        } else {
-            MenuConfiguracion guiConfig = new MenuConfiguracion();
-            guiConfig.setVisible(true);
-        }
-    }//GEN-LAST:event_windowConfigActionPerformed
+    }//GEN-LAST:event_windowJugarActionPerformed
+
+    private void windowConfig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowConfig1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_windowConfig1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -128,6 +141,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton windowConfig;
+    private javax.swing.JButton windowConfig1;
+    private javax.swing.JButton windowJugar;
     // End of variables declaration//GEN-END:variables
 }
