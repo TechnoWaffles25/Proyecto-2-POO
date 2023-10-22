@@ -252,6 +252,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
         });
 
         lblTiempo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblTiempo.setForeground(new java.awt.Color(204, 204, 204));
         lblTiempo.setText("00:00:00");
 
         javax.swing.GroupLayout panelRelojLayout = new javax.swing.GroupLayout(panelReloj);
@@ -532,9 +533,9 @@ public class MenuConfiguracion extends javax.swing.JFrame {
             btnPausar.setEnabled(false);;
             btnDetener.setEnabled(true);
             
-            comboHoras.setVisible(false);
-            comboMinutos.setVisible(false);
-            comboSegundos.setVisible(false);
+            comboHoras.setVisible(true);
+            comboMinutos.setVisible(true);
+            comboSegundos.setVisible(true);
             
             comboHoras.updateUI();
             comboMinutos.updateUI();

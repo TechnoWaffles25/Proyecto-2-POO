@@ -103,7 +103,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_windowJugarActionPerformed
 
     private void windowConfig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowConfig1ActionPerformed
-        // TODO add your handling code here:
+        File configdat = new File("config.dat");
+        if (configdat.exists()){
+            int showConfirmDialog = JOptionPane.showConfirmDialog(this, "Ya existe una configuracion! Si continua el juego actual sera perdido. Desea continuar?");
+            
+           
+            if (showConfirmDialog == JOptionPane.YES_OPTION) {
+                MenuConfiguracion wndwConfig = new MenuConfiguracion();
+                wndwConfig.setVisible(true);
+            } 
+        } else {
+            MenuConfiguracion wndwConfig = new MenuConfiguracion();
+            wndwConfig.setVisible(true);
+        }
+        
+        
+        
     }//GEN-LAST:event_windowConfig1ActionPerformed
 
     public static void main(String args[]) {
