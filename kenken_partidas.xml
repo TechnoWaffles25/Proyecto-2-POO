@@ -1,0 +1,63 @@
+<KenKen_1>  
+	<partida>   
+		<nivel_de_dificultad>muy fácil</nivel_de_dificultad>   
+		<jaula>48, x, (1,1), (2,1), (3,1)</jaula>   
+		<jaula>6, x, (1,2), (1,3)</jaula>   
+		<jaula>30, x, (1,4), (1,5), (2,5)</jaula>   
+		<jaula>1, -, (1,6), (2,6)</jaula>   
+		<jaula>5, -, (2,2), (3,2)</jaula>   
+		<jaula>3, -, (2,3), (3,3)</jaula>   
+		<jaula>3, /, (2,4), (3,4)</jaula>   
+		<jaula>1, -, (3,5), (3,6)</jaula>   
+		<jaula>45, x, (4,1), (5,1), (5,2), (6,1)</jaula>   
+		<jaula>11, +, (4,2), (4,3)</jaula> 
+		<jaula>32, x, (4,4), (5,3), (5,4)</jaula> 
+		<jaula>2, /, (4,5), (4,6)</jaula> 
+		<jaula>3, /, (5,6), (6,6)</jaula> 
+		<jaula>5, +, (6,2), (6,3)</jaula>  
+		<jaula>2, /, (6,4), (6,5)</jaula> 
+		<constantes>(5, 5, 5), (1, 2, 2), (4, 1, 6)</constantes>  
+	</partida> 
+</KenKen_1> 
+
+<KenKen_2>  
+	<partida>   
+		<nivel_de_dificultad>fácil</nivel_de_dificultad>   
+		<jaula>11, +, (1,1), (1,2), (2,1)</jaula>   
+		<jaula>120, x, (1,3), (2,2), (2,3)</jaula>   
+		<jaula>3, +, (1,4), (2,4)</jaula>   
+		<jaula>2, -, (1, 6), (2, 6)</jaula>   
+		<jaula>11, +, (2, 5), (3, 5)</jaula>   
+		<jaula>3, +, (3, 1), (3, 2)</jaula>   
+		<jaula>15, x, (3, 3), (3, 4)</jaula>   
+		<jaula>1, -, (3,4), (4,4)</jaula>   
+		<jaula>72, x, (4,1), (4,2), (5,1)</jaula>   
+		<jaula>8, x, (4,5), (4,6)</jaula> 
+		<jaula>3, +, (5,2), (5,3)</jaula> 
+		<jaula>13, +, (5,4), (6,4), (6,5)</jaula> 
+		<jaula>9, +, (5,6), (6,6)</jaula> 
+		<jaula>2, /, (6,1), (6,2)</jaula>   
+		<constantes>(3, 1, 5), (6, 3, 6), (1, 6, 3)</constantes>  
+	</partida> 
+</KenKen_2> 
+
+<Respuestas_1>
+	<nivel de dificultad>muy fácil</nivel de dificultad>
+	<casilla11> 6 </casilla11> <casilla12> 2 </casilla12> <casilla13> 3 </casilla13> <casilla14> 5 </casilla14> <casilla15> 1 </casilla15> <casilla16> 4 </casilla16>
+	<casilla21> 4 </casilla21> <casilla22> 1 </casilla22> <casilla23> 2 </casilla23> <casilla24> 3 </casilla24> <casilla25> 6 </casilla25> <casilla26> 5 </casilla26> 
+	<casilla31> 2 </casilla31> <casilla32> 6 </casilla32> <casilla33> 5 </casilla33> <casilla34> 1 </casilla34> <casilla35> 4 </casilla35> <casilla36> 3 </casilla36> 
+	<casilla41> 3 </casilla41> <casilla42> 5 </casilla42> <casilla43> 6 </casilla43> <casilla44> 4 </casilla44> <casilla45> 2 </casilla45> <casilla46> 1 </casilla46>
+	<casilla51> 1 </casilla51> <casilla52> 3 </casilla52> <casilla53> 4 </casilla53> <casilla54> 2 </casilla54> <casilla55> 5 </casilla55> <casilla56> 6 </casilla56>
+	<casilla61> 5 </casilla61> <casilla62> 4 </casilla62> <casilla63> 1 </casilla63> <casilla64> 6 </casilla64> <casilla65> 3 </casilla65> <casilla66> 2 </casilla66>
+</Respuestas_1>
+
+<Respuestas_2>
+	<nivel de dificultad>muy fácil</nivel de dificultad>
+	<casilla11> 5 </casilla11> <casilla12> 4 </casilla12> <casilla13> 6 </casilla13> <casilla14> 2 </casilla14> <casilla15> 3 </casilla15> <casilla16> 1 </casilla16>
+	<casilla21> 2 </casilla21> <casilla22> 5 </casilla22> <casilla23> 4 </casilla23> <casilla24> 1 </casilla24> <casilla25> 6 </casilla25> <casilla26> 3 </casilla26> 
+	<casilla31> 1 </casilla31> <casilla32> 2 </casilla32> <casilla33> 3 </casilla33> <casilla34> 4 </casilla34> <casilla35> 5 </casilla35> <casilla36> 6 </casilla36> 
+	<casilla41> 4 </casilla41> <casilla42> 6 </casilla42> <casilla43> 5 </casilla43> <casilla44> 3 </casilla44> <casilla45> 1 </casilla45> <casilla46> 2 </casilla46>
+	<casilla51> 3 </casilla51> <casilla52> 1 </casilla52> <casilla53> 2 </casilla53> <casilla54> 6 </casilla54> <casilla55> 4 </casilla55> <casilla56> 5 </casilla56>
+	<casilla61> 6 </casilla61> <casilla62> 3 </casilla62> <casilla63> 1 </casilla63> <casilla64> 5 </casilla64> <casilla65> 2 </casilla65> <casilla66> 4 </casilla66>
+</Respuestas_2>
+
