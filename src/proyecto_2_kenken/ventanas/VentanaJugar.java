@@ -4,6 +4,7 @@
  */
 package proyecto_2_kenken.ventanas;
 
+import proyecto_2_kenken.*;
 /**
  *
  * @author amontero
@@ -15,6 +16,8 @@ public class VentanaJugar extends javax.swing.JFrame {
      */
     public VentanaJugar() {
         initComponents();
+        ReadConfig readconfig = new ReadConfig();
+        readconfig.readConfiguration();
     }
 
     /**

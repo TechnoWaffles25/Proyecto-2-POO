@@ -1,4 +1,4 @@
-package proyecto_2_kenken;
+package proyecto_2_kenken.ventanas;
 
 import java.io.*;
 import java.time.LocalTime;
@@ -7,6 +7,7 @@ import java.time.Instant;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
+import proyecto_2_kenken.Data;
 
 /**
  *

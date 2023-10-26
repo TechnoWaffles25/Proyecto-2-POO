@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.time.Duration;
 
 public class Data implements Serializable{
-    private String dificultad;
-    private String reloj;
-    private String posicion;
-    private boolean sonido;
-    private Duration duration;
+    private static final long serialVersionUID = 123456789L;
+    private final String dificultad;
+    private final String reloj;
+    private final String posicion;
+    private final boolean sonido;
+    private final Duration duration;
     
     public Data(String pDificultad, String pReloj, String pPosicion, boolean pSonido, Duration pDuration){
         dificultad = pDificultad;
@@ -29,6 +30,9 @@ public class Data implements Serializable{
     }
     public boolean getSonido(){
         return sonido;
+    }
+    public Duration getDuration(){
+        return duration;
     }
     
 }
