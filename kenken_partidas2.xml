@@ -1,5 +1,4 @@
 <KenKen>
-    <partidas>
 	<partida>
             <nivel_de_dificultad>Facil</nivel_de_dificultad>
             <cages>
@@ -73,7 +72,7 @@
                         <cell>
                             <row>2</row>
                             <col>6</col>
-                            target_value>3</target_value>
+                            <target_value>3</target_value>
                         </cell>
                     </cells>
                 </jaula>
@@ -276,5 +275,4 @@
                 </jaula>
             </cages>
         </partida>
-    </partidas>
 </KenKen>

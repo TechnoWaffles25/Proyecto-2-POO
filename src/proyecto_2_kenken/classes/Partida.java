@@ -13,7 +13,11 @@ import java.util.List;
 public class Partida {
     private String dificultad;
     private List<Jaula> cages;
-
+    
+    public Partida(String pDificultad, List<Jaula> pCages){
+        dificultad = pDificultad;
+        cages = pCages;
+    }
     public List<Jaula> getCages(){
         return cages;
     }

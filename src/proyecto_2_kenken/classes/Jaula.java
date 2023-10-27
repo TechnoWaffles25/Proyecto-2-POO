@@ -15,8 +15,12 @@ public class Jaula {
     private int target;
     private char operation;
     private List<Cell> cells;
-    
-    @XmlElement
+   
+    public Jaula(int pTarget, char pOperation, List<Cell> pCells){
+        target = pTarget;
+        operation = pOperation;
+        cells = pCells;
+    }
     public int getTarget(){
         return target;
     }
