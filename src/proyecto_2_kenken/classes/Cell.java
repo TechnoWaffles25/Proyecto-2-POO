@@ -5,21 +5,22 @@
 package proyecto_2_kenken.classes;
 
 import javax.xml.bind.annotation.XmlElement;
-
+import javax.swing.JButton;
 /**
  *
  * @author amontero
  */
-public class Cell {
+public class Cell extends JButton{
     private int row;
     private int col;
-    private int value;
+    private int targetValue;
+    private int currentValue;
     
     
     public Cell (int pRow, int pCol, int pVal){
         row = pRow;
         col = pCol;
-        value = pVal;
+        targetValue = pVal;
     }
     
     @XmlElement
@@ -29,8 +30,11 @@ public class Cell {
     public int getColumn(){
         return col;
     }
-    public int getValue(){
-        return value;
+    public int getTargetValue(){
+        return targetValue;
+    }
+    public int getCurrentValue(){
+        return currentValue;
     }
     public void setRow(int pRow){
         row = pRow;
@@ -38,7 +42,10 @@ public class Cell {
     public void setColumn(int pCol){
         col = pCol;
     }
-    public void setValue(int pValue){
-        value = pValue;
+    public void setTargetValue(int pValue){
+        targetValue = pValue;
+    }
+    public void setCurrentValue(int pValue){
+        currentValue = pValue;
     }
 }

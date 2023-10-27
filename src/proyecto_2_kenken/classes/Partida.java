@@ -4,27 +4,24 @@
  */
 package proyecto_2_kenken.classes;
 
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
 
 /**
  *
  * @author amonteros
  */
 public class Partida {
-    private Grid grid;
     private String dificultad;
-    
-    @XmlElement
-    public Grid getGrid(){
-        return grid;
+    private List<Jaula> cages;
+
+    public List<Jaula> getCages(){
+        return cages;
+    }
+    public void setCages(List<Jaula> pCages){
+        cages = pCages;
     }
     public String getDificultad(){
         return dificultad;
-    }
-    public void setGrid(Grid pGrid){
-        grid = pGrid;
     }
     public void setDifiultad(String pDificultad){
         dificultad = pDificultad;

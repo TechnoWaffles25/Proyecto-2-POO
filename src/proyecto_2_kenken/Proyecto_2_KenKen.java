@@ -1,5 +1,7 @@
 package proyecto_2_kenken;
 
+import proyecto_2_kenken.ventanas.MenuPrincipal;
+
 public class Proyecto_2_KenKen {
 
     public static void main(String[] args) {

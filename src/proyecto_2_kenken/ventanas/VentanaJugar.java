@@ -4,6 +4,21 @@
  */
 package proyecto_2_kenken.ventanas;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import proyecto_2_kenken.*;
 /**
  *
@@ -18,9 +33,6 @@ public class VentanaJugar extends javax.swing.JFrame {
         initComponents();
         ReadConfig readconfig = new ReadConfig();
         readconfig.readConfiguration();
-        readconfig.getDificultad();
-        ReadXML readxml = new ReadXML();
-        readxml.ReadXMLFile();
     }
 
     /**
