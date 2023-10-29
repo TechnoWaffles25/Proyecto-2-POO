@@ -14,77 +14,58 @@ import java.util.List;
 import proyecto_2_kenken.classes.*;
 
 public class ReadPartidaXML {
-    public Partida parseXML() {
+    public Partida parseKenKenPartidas(String fileName) {
         try {
+            File xmlFile = new File(fileName);
+
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            
-            // Create a File object with the given file path
-            File xmlFile = new File("kenken_partidas2.xml");
+            Document doc = builder.parse(xmlFile);
 
-            // Check if the file exists
-            if (!xmlFile.exists()) {
-                System.out.println("El xml no existe tonto.");
-                return null;
-            }
+            // Root element
+            Element root = doc.getDocumentElement();
 
-            // Create a FileInputStream to read the file
-            FileInputStream fileInputStream = new FileInputStream(xmlFile);
-        
-            // Parse the XML using the FileInputStream
-            Document doc = builder.parse(fileInputStream);
-                
-            // Retrieve the first Partida element (assuming at least one exists)
-            NodeList partidas = doc.getElementsByTagName("partida");
-            if (partidas.getLength() > 0) {
-                Element partidaElement = (Element) partidas.item(0);
-                
-                // Extract difficulty level
-                String nivelDeDificultad = partidaElement.getElementsByTagName("nivel_de_dificultad").item(0).getTextContent();
+            // Find the Facil element
+            NodeList facilList = root.getElementsByTagName("Facil");
+            if (facilList.getLength() > 0) {
+                Element facilElement = (Element) facilList.item(0);
 
-                // Extract Cages (Jaula)
-                NodeList jaulas = partidaElement.getElementsByTagName("jaula");
-                // Creamos la lista de jaulas para la partida
-                List<Jaula> jaulaList = new ArrayList<>();
+                // Create a list to store cells
+                List<Cell> cells = new ArrayList<>();
 
-                for (int i = 0; i < jaulas.getLength(); i++) {
-                    Element jaulaElement = (Element) jaulas.item(i);
+                // Find the Partida element
+                NodeList partidaList = facilElement.getElementsByTagName("partida");
+                if (partidaList.getLength() > 0) {
+                    Element partidaElement = (Element) partidaList.item(0);
 
-                    // Extract target and operation from Jaula
-                    int target = Integer.parseInt(jaulaElement.getElementsByTagName("target").item(0).getTextContent());
-                    String operationString = jaulaElement.getElementsByTagName("operation").item(0).getTextContent();
-                    char operation = operationString.charAt(0);
-                    
-                    // Extract Cells within the Jaula
-                    NodeList cells = jaulaElement.getElementsByTagName("cell");
-                    // Creamos la lista de celdas para la jaula 
-                    List<Cell> cellList = new ArrayList<>();
+                    // Find all cell elements
+                    NodeList cellList = partidaElement.getElementsByTagName("cell");
+                    for (int i = 0; i < cellList.getLength(); i++) {
+                        Element cellElement = (Element) cellList.item(i);
+                        String cellData = cellElement.getTextContent();
+                        String[] cellParts = cellData.split(",");
 
-                    for (int j = 0; j < cells.getLength(); j++) {
-                        Element cellElement = (Element) cells.item(j);
+                        if (cellParts.length == 5) {
+                            int jailTargetValue = Integer.parseInt(cellParts[0]);
+                            char operation = cellParts[1].charAt(0);
+                            int row = Integer.parseInt(cellParts[2]);
+                            int col = Integer.parseInt(cellParts[3]);
+                            int targetValue = Integer.parseInt(cellParts[4]);
 
-                        // Extract row, col, and target_value
-                        int row = Integer.parseInt(cellElement.getElementsByTagName("row").item(0).getTextContent());
-                        int col = Integer.parseInt(cellElement.getElementsByTagName("col").item(0).getTextContent());
-                        int targetValue = Integer.parseInt(cellElement.getElementsByTagName("target_value").item(0).getTextContent());
-
-                        // Create a Cell object
-                        Cell cell = new Cell(row, col, targetValue);
-                        cellList.add(cell);
+                            // Create a Cell object and add it to the list
+                            Cell cell = new Cell(jailTargetValue, operation, row, col, targetValue);
+                            cells.add(cell);
+                        }
                     }
-
-                    // Create a Jaula object
-                    Jaula jaula = new Jaula(target, operation, cellList);
-                    jaulaList.add(jaula);
                 }
-
-                // Create the Partida object
-                return new Partida(nivelDeDificultad, jaulaList);
+                // Create a Partida object with the list of cells
+                Partida partida = new Partida(cells);
+                // Return the Partida object
+                return partida;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        return null;
+        return null; // Return null in case of an error
     }
 }

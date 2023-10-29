@@ -9,7 +9,7 @@ public class Proyecto_2_KenKen {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ReadPartidaXML reader = new ReadPartidaXML();
-                Partida partida = reader.parseXML();
+                Partida partida = reader.parseKenKenPartidas("kenken_partidas3.xml");
 
                 if (partida != null) {
                     System.out.println("goofy ahh");

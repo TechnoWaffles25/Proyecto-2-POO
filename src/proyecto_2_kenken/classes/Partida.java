@@ -11,23 +11,12 @@ import java.util.List;
  * @author amonteros
  */
 public class Partida {
-    private String dificultad;
-    private List<Jaula> cages;
+    private List<Cell> cells;
     
-    public Partida(String pDificultad, List<Jaula> pCages){
-        dificultad = pDificultad;
-        cages = pCages;
+    public Partida(List<Cell> pCells){
+        cells = pCells;
     }
-    public List<Jaula> getCages(){
-        return cages;
-    }
-    public void setCages(List<Jaula> pCages){
-        cages = pCages;
-    }
-    public String getDificultad(){
-        return dificultad;
-    }
-    public void setDifiultad(String pDificultad){
-        dificultad = pDificultad;
+    public List<Cell> getCells(){
+        return cells;
     }
 }

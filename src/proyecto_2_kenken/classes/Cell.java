@@ -11,13 +11,17 @@ import javax.swing.JButton;
  * @author amontero
  */
 public class Cell extends JButton{
+    private int jailTargetValue;
+    private char operation;
     private int row;
     private int col;
     private int targetValue;
     private int currentValue;
     
     
-    public Cell (int pRow, int pCol, int pVal){
+    public Cell (int pJailTargetVal, char pOp, int pRow, int pCol, int pVal){
+        jailTargetValue = pJailTargetVal;
+        operation = pOp;
         row = pRow;
         col = pCol;
         targetValue = pVal;
@@ -30,22 +34,21 @@ public class Cell extends JButton{
     public int getColumn(){
         return col;
     }
+    public int getJailTargetValue(){
+        return jailTargetValue;
+    }
+    public char getOperation(){
+        return operation;
+    }
     public int getTargetValue(){
         return targetValue;
     }
     public int getCurrentValue(){
         return currentValue;
     }
-    public void setRow(int pRow){
-        row = pRow;
-    }
-    public void setColumn(int pCol){
-        col = pCol;
-    }
-    public void setTargetValue(int pValue){
-        targetValue = pValue;
-    }
-    public void setCurrentValue(int pValue){
-        currentValue = pValue;
+    @Override
+    public String toString() {
+        return "Cell [Row: " + row + ", Column: " + col + ", Jail Target Value: " + jailTargetValue +
+               ", Operation: " + operation + ", Target Value: " + targetValue + ", Current Value: " + currentValue + "]";
     }
 }

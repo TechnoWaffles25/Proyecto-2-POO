@@ -3,6 +3,7 @@ package proyecto_2_kenken.ventanas;
 import proyecto_2_kenken.ventanas.MenuConfiguracion;
 import java.io.File;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import proyecto_2_kenken.ventanas.*;
 
 public class MenuPrincipal extends javax.swing.JFrame {
@@ -99,8 +100,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void windowJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowJugarActionPerformed
-        VentanaJugar wndwJugar = new VentanaJugar();
-        wndwJugar.setVisible(true);
+        SwingUtilities.invokeLater(() -> {
+            VentanaJugar ventana = new VentanaJugar();
+            ventana.setVisible(true);
+        });
     }//GEN-LAST:event_windowJugarActionPerformed
 
     private void windowConfig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowConfig1ActionPerformed

@@ -20,7 +20,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
      */
     public MenuConfiguracion() {
         initComponents();
-        btnPausar.setEnabled(false);;
+        btnPausar.setEnabled(false);
         comboHoras.setEnabled(false);
         comboMinutos.setEnabled(false);
         comboSegundos.setEnabled(false);
@@ -431,7 +431,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         if (comboReloj.getSelectedIndex() == 0) {
-        System.out.println("Timer inicio");
+        System.out.println("Cronometro inicio");
 
         Instant tiempoInicio = Instant.now();
 
@@ -544,6 +544,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
             btnIniciar.updateUI();
             btnPausar.updateUI();
             btnDetener.updateUI();
+            resetTimerLabel();
 
         } if (comboReloj.getSelectedIndex() == 1){
             System.out.println("Seleccionado Timer");
@@ -560,7 +561,8 @@ public class MenuConfiguracion extends javax.swing.JFrame {
             btnIniciar.updateUI();
             btnPausar.updateUI();
             btnDetener.updateUI();
-
+            resetTimerLabel();
+            
         } if (comboReloj.getSelectedIndex() == 2) {
             System.out.println("Seleccionado NO Cronometro");
             comboHoras.setEnabled(false);
@@ -576,6 +578,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
             btnIniciar.updateUI();
             btnPausar.updateUI();
             btnDetener.updateUI();
+            resetTimerLabel();
         }
     }//GEN-LAST:event_comboRelojActionPerformed
 
