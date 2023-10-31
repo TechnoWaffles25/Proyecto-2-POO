@@ -4,7 +4,6 @@
  */
 package proyecto_2_kenken.classes;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.swing.JButton;
 /**
  *
@@ -27,7 +26,6 @@ public class Cell extends JButton{
         targetValue = pVal;
     }
     
-    @XmlElement
     public int getRow(){
         return row;
     }

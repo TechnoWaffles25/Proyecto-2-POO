@@ -27,6 +27,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnsDer.setVisible(false);
         ReadConfig readconfig = new ReadConfig();
         readconfig.readConfiguration();
+        String dificultad = readconfig.getDificultad();
+        System.out.println("Dificultad seleccionada: " + dificultad);
 
         List<JButton> sublstBotones = new ArrayList<>();
         List<List<JButton>> lstBotones = new ArrayList<>();
@@ -91,7 +93,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         System.out.println(lstBotones);
         
         ReadPartidaXML reader = new ReadPartidaXML();
-        Partida partida = reader.parseKenKenPartidas("kenken_partidas3.xml");
+        Partida partida = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
         List<Cell> lstCells = partida.getCells();
         
         int i = 1;
