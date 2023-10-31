@@ -5,12 +5,13 @@
 package proyecto_2_kenken.classes;
 
 import java.util.List;
-import javax.xml.bind.annotation.XmlElement;
+//import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
  * @author amontero
  */
+/*
 public class Jaula {
     private int target;
     private char operation;
@@ -41,3 +42,4 @@ public class Jaula {
         cells = pCells;
     }
 }
+*/

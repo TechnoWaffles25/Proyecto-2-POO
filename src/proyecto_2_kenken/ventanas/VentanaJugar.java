@@ -16,7 +16,8 @@ import proyecto_2_kenken.classes.*;
  * @author amontero
  */
 public class VentanaJugar extends javax.swing.JFrame {
-
+    public Lists listaJugadas = new Lists();
+    private int valornuevo;
     /**
      * Creates new form VentanaJugar
      */
@@ -233,76 +234,256 @@ public class VentanaJugar extends javax.swing.JFrame {
         boardPanel.setBackground(new java.awt.Color(102, 102, 102));
 
         btn11.setText("jButton1");
+        btn11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn11ActionPerformed(evt);
+            }
+        });
 
         btn12.setText("jButton1");
+        btn12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn12ActionPerformed(evt);
+            }
+        });
 
         btn13.setText("jButton1");
+        btn13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn13ActionPerformed(evt);
+            }
+        });
 
         btn14.setText("jButton1");
+        btn14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn14ActionPerformed(evt);
+            }
+        });
 
         btn15.setText("jButton1");
+        btn15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn15ActionPerformed(evt);
+            }
+        });
 
         btn16.setText("jButton1");
+        btn16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn16ActionPerformed(evt);
+            }
+        });
 
         btn21.setText("jButton1");
+        btn21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn21ActionPerformed(evt);
+            }
+        });
 
         btn22.setText("jButton1");
+        btn22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn22ActionPerformed(evt);
+            }
+        });
 
         btn23.setText("jButton1");
+        btn23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn23ActionPerformed(evt);
+            }
+        });
 
         btn24.setText("jButton1");
+        btn24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn24ActionPerformed(evt);
+            }
+        });
 
         btn25.setText("jButton1");
+        btn25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn25ActionPerformed(evt);
+            }
+        });
 
         btn26.setText("jButton1");
+        btn26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn26ActionPerformed(evt);
+            }
+        });
 
         btn31.setText("jButton1");
+        btn31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn31ActionPerformed(evt);
+            }
+        });
 
         btn32.setText("jButton1");
+        btn32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn32ActionPerformed(evt);
+            }
+        });
 
         btn33.setText("jButton1");
+        btn33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn33ActionPerformed(evt);
+            }
+        });
 
         btn34.setText("jButton1");
+        btn34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn34ActionPerformed(evt);
+            }
+        });
 
         btn35.setText("jButton1");
+        btn35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn35ActionPerformed(evt);
+            }
+        });
 
         btn36.setText("jButton1");
+        btn36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn36ActionPerformed(evt);
+            }
+        });
 
         btn41.setText("jButton1");
+        btn41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn41ActionPerformed(evt);
+            }
+        });
 
         btn42.setText("jButton1");
+        btn42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn42ActionPerformed(evt);
+            }
+        });
 
         btn43.setText("jButton1");
+        btn43.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn43ActionPerformed(evt);
+            }
+        });
 
         btn44.setText("jButton1");
+        btn44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn44ActionPerformed(evt);
+            }
+        });
 
         btn45.setText("jButton1");
+        btn45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn45ActionPerformed(evt);
+            }
+        });
 
         btn46.setText("jButton1");
+        btn46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn46ActionPerformed(evt);
+            }
+        });
 
         btn51.setText("jButton1");
+        btn51.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn51ActionPerformed(evt);
+            }
+        });
 
         btn52.setText("jButton1");
+        btn52.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn52ActionPerformed(evt);
+            }
+        });
 
         btn53.setText("jButton1");
+        btn53.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn53ActionPerformed(evt);
+            }
+        });
 
         btn54.setText("jButton1");
+        btn54.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn54ActionPerformed(evt);
+            }
+        });
 
         btn55.setText("jButton1");
+        btn55.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn55ActionPerformed(evt);
+            }
+        });
 
         btn56.setText("jButton1");
+        btn56.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn56ActionPerformed(evt);
+            }
+        });
 
         btn61.setText("jButton1");
+        btn61.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn61ActionPerformed(evt);
+            }
+        });
 
         btn62.setText("jButton1");
+        btn62.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn62ActionPerformed(evt);
+            }
+        });
 
         btn64.setText("jButton1");
+        btn64.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn64ActionPerformed(evt);
+            }
+        });
 
         btn63.setText("jButton1");
+        btn63.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn63ActionPerformed(evt);
+            }
+        });
 
         btn65.setText("jButton1");
+        btn65.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn65ActionPerformed(evt);
+            }
+        });
 
         btn66.setText("jButton1");
+        btn66.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn66ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout boardPanelLayout = new javax.swing.GroupLayout(boardPanel);
         boardPanel.setLayout(boardPanelLayout);
@@ -453,19 +634,44 @@ public class VentanaJugar extends javax.swing.JFrame {
 
         buttonGroup1.add(jToggleButton2);
         jToggleButton2.setText("2");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton3);
         jToggleButton3.setText("3");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton4);
         jToggleButton4.setText("4");
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton4ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton5);
         jToggleButton5.setText("5");
         jToggleButton5.setToolTipText("");
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton5ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton6);
         jToggleButton6.setText("6");
+        jToggleButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnsIzqLayout = new javax.swing.GroupLayout(btnsIzq);
         btnsIzq.setLayout(btnsIzqLayout);
@@ -504,9 +710,19 @@ public class VentanaJugar extends javax.swing.JFrame {
 
         buttonGroup1.add(jToggleButton7);
         jToggleButton7.setText("1");
+        jToggleButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton7ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton8);
         jToggleButton8.setText("2");
+        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton8ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton9);
         jToggleButton9.setText("3");
@@ -518,12 +734,27 @@ public class VentanaJugar extends javax.swing.JFrame {
 
         buttonGroup1.add(jToggleButton10);
         jToggleButton10.setText("4");
+        jToggleButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton10ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton11);
         jToggleButton11.setText("5");
+        jToggleButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton11ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton12);
         jToggleButton12.setText("6");
+        jToggleButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnsDerLayout = new javax.swing.GroupLayout(btnsDer);
         btnsDer.setLayout(btnsDerLayout);
@@ -610,12 +841,364 @@ public class VentanaJugar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
-        // TODO add your handling code here:
+    String nombre = jToggleButton9.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num;     // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton9ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+    String nombre = jToggleButton1.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
+    String nombre = jToggleButton7.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num; // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton7ActionPerformed
+
+    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
+    String nombre = jToggleButton8.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num; // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton8ActionPerformed
+
+    private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
+    String nombre = jToggleButton10.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num;     // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton10ActionPerformed
+
+    private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
+    String nombre = jToggleButton11.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num; // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton11ActionPerformed
+
+    private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
+    String nombre = jToggleButton12.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num;  // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton12ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+     String nombre = jToggleButton2.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num;// TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+    String nombre = jToggleButton3.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num; // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+     String nombre = jToggleButton4.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num; // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+    String nombre = jToggleButton5.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num;  // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton5ActionPerformed
+
+    private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
+    String nombre = jToggleButton6.getText().toString();
+    int num=Integer.parseInt(nombre);
+    valornuevo = num;  // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton6ActionPerformed
+
+    private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(1,1,valoranterior);
+        btn11.setText(text); } 
+    }//GEN-LAST:event_btn11ActionPerformed
+
+    private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(1,2,valoranterior);
+        btn12.setText(text); } 
+    }//GEN-LAST:event_btn12ActionPerformed
+
+    private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(1,3,valoranterior);
+        btn13.setText(text); }     
+    }//GEN-LAST:event_btn13ActionPerformed
+
+    private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(1,4,valoranterior);
+        btn14.setText(text); }   
+    }//GEN-LAST:event_btn14ActionPerformed
+
+    private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(1,5,valoranterior);
+        btn15.setText(text); }  
+    }//GEN-LAST:event_btn15ActionPerformed
+
+    private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(1,6,valoranterior);
+        btn16.setText(text); } 
+    }//GEN-LAST:event_btn16ActionPerformed
+
+    private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(2,1,valoranterior);
+        btn21.setText(text); }  
+    }//GEN-LAST:event_btn21ActionPerformed
+
+    private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(2,2,valoranterior);
+        btn22.setText(text); }  
+    }//GEN-LAST:event_btn22ActionPerformed
+
+    private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(2,3,valoranterior);
+        btn23.setText(text); }         
+    }//GEN-LAST:event_btn23ActionPerformed
+
+    private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(2,4,valoranterior);
+        btn24.setText(text); }    
+    }//GEN-LAST:event_btn24ActionPerformed
+
+    private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(2,5,valoranterior);
+        btn25.setText(text); }  
+    }//GEN-LAST:event_btn25ActionPerformed
+
+    private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn26ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(2,6,valoranterior);
+        btn26.setText(text); } 
+    }//GEN-LAST:event_btn26ActionPerformed
+
+    private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(3,1,valoranterior);
+        btn31.setText(text); } 
+    }//GEN-LAST:event_btn31ActionPerformed
+
+    private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+       String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(3,2,valoranterior);
+        btn32.setText(text); }  
+    }//GEN-LAST:event_btn32ActionPerformed
+
+    private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(3,3,valoranterior);
+        btn33.setText(text); } 
+    }//GEN-LAST:event_btn33ActionPerformed
+
+    private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn34ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(3,4,valoranterior);
+        btn34.setText(text); }   
+    }//GEN-LAST:event_btn34ActionPerformed
+
+    private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn35ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(3,5,valoranterior);
+        btn35.setText(text); }   
+    }//GEN-LAST:event_btn35ActionPerformed
+
+    private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn36ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(3,6,valoranterior);
+        btn36.setText(text); }
+    }//GEN-LAST:event_btn36ActionPerformed
+
+    private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(4,1,valoranterior);
+        btn41.setText(text); }   
+    }//GEN-LAST:event_btn41ActionPerformed
+
+    private void btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn42ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(4,2,valoranterior);
+        btn42.setText(text); }   
+    }//GEN-LAST:event_btn42ActionPerformed
+
+    private void btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn43ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(4,3,valoranterior);
+        btn43.setText(text); } 
+    }//GEN-LAST:event_btn43ActionPerformed
+
+    private void btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn44ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(4,4,valoranterior);
+        btn44.setText(text); } 
+    }//GEN-LAST:event_btn44ActionPerformed
+
+    private void btn45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn45ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+       String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(4,5,valoranterior);
+        btn45.setText(text); }    
+    }//GEN-LAST:event_btn45ActionPerformed
+
+    private void btn46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn46ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(4,6,valoranterior);
+        btn46.setText(text); }    
+    }//GEN-LAST:event_btn46ActionPerformed
+
+    private void btn51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn51ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(5,1,valoranterior);
+        btn51.setText(text); }  
+    }//GEN-LAST:event_btn51ActionPerformed
+
+    private void btn52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn52ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(5,2,valoranterior);
+        btn52.setText(text); }  
+    }//GEN-LAST:event_btn52ActionPerformed
+
+    private void btn53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn53ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(5,3,valoranterior);
+        btn53.setText(text); }  
+    }//GEN-LAST:event_btn53ActionPerformed
+
+    private void btn54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn54ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(5,4,valoranterior);
+        btn54.setText(text); } 
+    }//GEN-LAST:event_btn54ActionPerformed
+
+    private void btn55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn55ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(5,5,valoranterior);
+        btn55.setText(text); }  
+    }//GEN-LAST:event_btn55ActionPerformed
+
+    private void btn56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn56ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(5,6,valoranterior);
+        btn56.setText(text); }  
+    }//GEN-LAST:event_btn56ActionPerformed
+
+    private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(6,1,valoranterior);
+        btn61.setText(text); }  
+    }//GEN-LAST:event_btn61ActionPerformed
+
+    private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(6,2,valoranterior);
+        btn62.setText(text); }  
+    }//GEN-LAST:event_btn62ActionPerformed
+
+    private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(6,3,valoranterior);
+        btn63.setText(text); }   
+    }//GEN-LAST:event_btn63ActionPerformed
+
+    private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
+     if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(6,4,valoranterior);
+        btn64.setText(text); }    
+    }//GEN-LAST:event_btn64ActionPerformed
+
+    private void btn65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn65ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(6,5,valoranterior);
+        btn65.setText(text); }  
+    }//GEN-LAST:event_btn65ActionPerformed
+
+    private void btn66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn66ActionPerformed
+    if (valornuevo > 0 && valornuevo < 7){    
+        String text= ""+valornuevo;
+        String valoranterior=btn66.getText().toString();
+        listaJugadas.agregarJugada(6,6,valoranterior);
+        btn66.setText(text); } 
+    }//GEN-LAST:event_btn66ActionPerformed
 
     /**
      * @param args the command line arguments
