@@ -118,8 +118,8 @@
                             <target_value>3</target_value>
                         </cell>
                         <cell>
-                            <row>4</row>
-                            <col>3</col>
+                            <row>3</row>
+                            <col>4</col>
                             <target_value>5</target_value>
                         </cell>
                     </cells>
@@ -273,17 +273,6 @@
                         </cell>
                     </cells>
                 </jaula>
-        <jaula>
-                    <target>1</target>
-                    <operation>n</operation>
-                    <cells>
-			    <cell>
-                        <row>6</row>
-                        <col>3</col>
-                        <target_value>1</target_value>
-                    </cell>
-                </cells>
-        </jaula>
             </cages>
         </partida>
 </KenKen>
