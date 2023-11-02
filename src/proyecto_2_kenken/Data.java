@@ -7,11 +7,11 @@ public class Data implements Serializable{
     private static final long serialVersionUID = 123456789L;
     private final String dificultad;
     private final String reloj;
-    private final String posicion;
+    private final boolean posicion;
     private final boolean sonido;
     private final Duration duration;
     
-    public Data(String pDificultad, String pReloj, String pPosicion, boolean pSonido, Duration pDuration){
+    public Data(String pDificultad, String pReloj, boolean pPosicion, boolean pSonido, Duration pDuration){
         dificultad = pDificultad;
         reloj = pReloj;
         posicion = pPosicion;
@@ -25,7 +25,7 @@ public class Data implements Serializable{
     public String getReloj(){
         return reloj;
     }
-    public String getPosicion(){
+    public boolean getPosicion(){
         return posicion;
     }
     public boolean getSonido(){

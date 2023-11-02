@@ -9,9 +9,9 @@ package proyecto_2_kenken.classes;
  * @author fabri
  */
 public class Nodo {
-    public String valoranterior;
-    public int coll;
-    public int row;
+    private String valoranterior;
+    private int coll;
+    private int row;
     public Nodo predecesor;
     public Nodo sucesor;
     
@@ -22,5 +22,22 @@ public class Nodo {
         predecesor=null;
         sucesor=null;
     }
-    
+    public int getCol(){
+        return coll;
+    }
+    public int getRow(){
+        return row;
+    }
+    public String getValorAnterior(){
+        return valoranterior;
+    }
+    @Override 
+    public String toString(){
+        System.out.println("Valor anterior: " + valoranterior);
+        System.out.println("Columna: " + coll);
+        System.out.println("Fila: " + row);
+        //System.out.println("Predecesor: " + predecesor.toString());
+        //System.out.println("Sucesor: " + sucesor.toString());
+        return "";
+    }
 }

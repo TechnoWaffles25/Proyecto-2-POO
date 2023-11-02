@@ -30,6 +30,7 @@ public class Lists {
         }
     }
     public Nodo verUltimaJugada(){
+        System.out.println("Cola: " + cola);
         return cola;    
     }
     public Nodo popUltimaJugada() {

@@ -28,7 +28,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
 
     public String dificultad;
     public String reloj;
-    public String lado;
+    public boolean lado;
     public boolean sonido;
     
     public Duration tiempoJuego;
@@ -45,7 +45,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
     public String getReloj(){
         return reloj;
     }
-    public String getPosPanel(){
+    public boolean getPosPanel(){
         return lado;
     }
     public boolean getSonido(){
@@ -341,6 +341,11 @@ public class MenuConfiguracion extends javax.swing.JFrame {
         comboLado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         comboLado.setForeground(new java.awt.Color(204, 204, 204));
         comboLado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Izquierda", "Derecha" }));
+        comboLado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLadoActionPerformed(evt);
+            }
+        });
 
         btnSALIR.setBackground(new java.awt.Color(255, 51, 51));
         btnSALIR.setSelected(true);
@@ -585,7 +590,11 @@ public class MenuConfiguracion extends javax.swing.JFrame {
     private void btnSALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALIRActionPerformed
         dificultad = (String) comboDificultad.getSelectedItem();
         reloj = (String) comboReloj.getSelectedItem();
-        lado = (String) comboLado.getSelectedItem();
+        if (comboLado.getSelectedItem() == "Derecha"){
+            lado = true;
+        } else {
+            lado = false;
+        }
         sonido = (boolean) toggleSonido.isSelected();
         
         Data config = new Data(dificultad, reloj, lado, sonido, tiempoJuego);
@@ -618,6 +627,10 @@ public class MenuConfiguracion extends javax.swing.JFrame {
         tiempoJuego = Duration.ofHours(horas).plusMinutes(minutos).plusSeconds(segundos);
         System.out.println(tiempoJuego.toString());
     }//GEN-LAST:event_comboSegundosActionPerformed
+
+    private void comboLadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboLadoActionPerformed
 
     /**
      * @param args the command line arguments

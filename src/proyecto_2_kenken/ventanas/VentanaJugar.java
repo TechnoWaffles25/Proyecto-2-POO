@@ -17,148 +17,165 @@ import proyecto_2_kenken.classes.*;
  */
 public class VentanaJugar extends javax.swing.JFrame {
     public Lists listaJugadas = new Lists();
+    public Lists jugadasDeshechas = new Lists();
+    public List<List<JButton>> lstBotones = new ArrayList<>();
+    public List<JButton> sublstBotones = new ArrayList<>();
+    private String dificultad;
     private int valornuevo;
+    
     /**
      * Creates new form VentanaJugar
      */
     public VentanaJugar() {
         initComponents();
-        btnsIzq.setVisible(true); //////
-        btnsDer.setVisible(false);
+        
         ReadConfig readconfig = new ReadConfig();
         readconfig.readConfiguration();
-        String dificultad = readconfig.getDificultad();
-        System.out.println("Dificultad seleccionada: " + dificultad);
-
-        List<JButton> sublstBotones = new ArrayList<>();
-        List<List<JButton>> lstBotones = new ArrayList<>();
+        
+        String dificultadGame = readconfig.getDificultad();
+        System.out.println("Dificultad seleccionada: " + dificultadGame);
+        dificultad = dificultadGame;
+        
+        boolean posicion = readconfig.getPosicion();
+        if (posicion == true){
+            btnsDer.setVisible(true);
+            btnsIzq.setVisible(false);
+        } else {
+            btnsIzq.setVisible(true);
+            btnsDer.setVisible(false);
+        }
+        
         // List Jugadas
         // Deshacer Jugadasx
         // Indices Jugadas deshechas
         
-        // Creamos las celdas
-        sublstBotones.add(btn11);
-        sublstBotones.add(btn12);
-        sublstBotones.add(btn13);
-        sublstBotones.add(btn14);
-        sublstBotones.add(btn15);
-        sublstBotones.add(btn16);
-        lstBotones.add(sublstBotones);
-        sublstBotones = new ArrayList<>();
         
-        sublstBotones.add(btn21);
-        sublstBotones.add(btn22);
-        sublstBotones.add(btn23);
-        sublstBotones.add(btn24);
-        sublstBotones.add(btn25);
-        sublstBotones.add(btn26);
-        lstBotones.add(sublstBotones);
-        sublstBotones = new ArrayList<>();
-        
-        sublstBotones.add(btn31);
-        sublstBotones.add(btn32);
-        sublstBotones.add(btn33);
-        sublstBotones.add(btn34);
-        sublstBotones.add(btn35);
-        sublstBotones.add(btn36);
-        lstBotones.add(sublstBotones);
-        sublstBotones = new ArrayList<>();
-        
-        sublstBotones.add(btn41);
-        sublstBotones.add(btn42);
-        sublstBotones.add(btn43);
-        sublstBotones.add(btn44);
-        sublstBotones.add(btn45);
-        sublstBotones.add(btn46);
-        lstBotones.add(sublstBotones);
-        sublstBotones = new ArrayList<>();
-        
-        sublstBotones.add(btn51);
-        sublstBotones.add(btn52);
-        sublstBotones.add(btn53);
-        sublstBotones.add(btn54);
-        sublstBotones.add(btn55);
-        sublstBotones.add(btn56);
-        lstBotones.add(sublstBotones);
-        sublstBotones = new ArrayList<>();
-        
-        sublstBotones.add(btn61);
-        sublstBotones.add(btn62);
-        sublstBotones.add(btn63);
-        sublstBotones.add(btn64);
-        sublstBotones.add(btn65);
-        sublstBotones.add(btn66);
-        lstBotones.add(sublstBotones);
-        
-        System.out.println(lstBotones);
-        
-        ReadPartidaXML reader = new ReadPartidaXML();
-        Partida partida = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
-        List<Cell> lstCells = partida.getCells();
-        
-        int i = 1;
-        for (Cell cell : lstCells){
-            System.out.println(i + " " + cell.toString());
-            i++;
-        }
-        System.out.println("////////////////////////////////////////////");
-        
-        for (Cell cell : lstCells){
-            int jtv = cell.getJailTargetValue();
-            char operation = cell.getOperation();
-            int row = cell.getRow();
-            int column = cell.getColumn();
-            String txt = Integer.toString(jtv) + operation;
-                                
-            switch(operation){
-                case '+':
-                    System.out.println("Caso +");
-                    SwingUtilities.invokeLater(() -> {
-                        JButton btnP = lstBotones.get(row).get(column);
-                        btnP.setBackground(Color.RED);
-                        btnP.setText(txt);
-                        btnP.setOpaque(true);
-                    });
-                    break;
-                case '-':
-                    System.out.println("Caso -");
-                    SwingUtilities.invokeLater(() -> {
-                        JButton btnM = lstBotones.get(row).get(column);
-                        btnM.setBackground(Color.BLUE);
-                        btnM.setText(txt);
-                        btnM.setOpaque(true);
-                    });
-                    break;
-                case 'x':
-                    System.out.println("Caso x");
-                    SwingUtilities.invokeLater(() -> {
-                        JButton btnX = lstBotones.get(row).get(column);
-                        btnX.setBackground(Color.ORANGE);
-                        btnX.setText(txt);
-                        btnX.setOpaque(true);
-                    });
-                    break;
-                case '/':
-                    System.out.println("Caso /");
-                    SwingUtilities.invokeLater(() -> {
-                        JButton btnD = lstBotones.get(row).get(column);
-                        btnD.setBackground(Color.GREEN);
-                        btnD.setText(txt);
-                        btnD.setOpaque(true);
-                    });
-                    break;
-                case 'n':
-                    System.out.println("Caso n");
-                    SwingUtilities.invokeLater(() -> {
-                        JButton btnN = lstBotones.get(row).get(column);
-                        btnN.setBackground(Color.WHITE);
-                        btnN.setText(txt);
-                        btnN.setOpaque(true);
-                    });
-                    break;
-            } 
-        } 
     }
+    
+    public void cargarTablero(String dificultad){
+            // Creamos las celdas
+            sublstBotones.add(btn11);
+            sublstBotones.add(btn12);
+            sublstBotones.add(btn13);
+            sublstBotones.add(btn14);
+            sublstBotones.add(btn15);
+            sublstBotones.add(btn16);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn21);
+            sublstBotones.add(btn22);
+            sublstBotones.add(btn23);
+            sublstBotones.add(btn24);
+            sublstBotones.add(btn25);
+            sublstBotones.add(btn26);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn31);
+            sublstBotones.add(btn32);
+            sublstBotones.add(btn33);
+            sublstBotones.add(btn34);
+            sublstBotones.add(btn35);
+            sublstBotones.add(btn36);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn41);
+            sublstBotones.add(btn42);
+            sublstBotones.add(btn43);
+            sublstBotones.add(btn44);
+            sublstBotones.add(btn45);
+            sublstBotones.add(btn46);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn51);
+            sublstBotones.add(btn52);
+            sublstBotones.add(btn53);
+            sublstBotones.add(btn54);
+            sublstBotones.add(btn55);
+            sublstBotones.add(btn56);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn61);
+            sublstBotones.add(btn62);
+            sublstBotones.add(btn63);
+            sublstBotones.add(btn64);
+            sublstBotones.add(btn65);
+            sublstBotones.add(btn66);
+            lstBotones.add(sublstBotones);
+
+            System.out.println(lstBotones);
+
+            ReadPartidaXML reader = new ReadPartidaXML();
+            Partida partida = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
+            List<Cell> lstCells = partida.getCells();
+
+            int i = 1;
+            for (Cell cell : lstCells){
+                System.out.println(i + " " + cell.toString());
+                i++;
+            }
+            System.out.println("////////////////////////////////////////////");
+
+            for (Cell cell : lstCells){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                int row = cell.getRow();
+                int column = cell.getColumn();
+                String txt = Integer.toString(jtv) + operation;
+
+                switch(operation){
+                    case '+':
+                        System.out.println("Caso +");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnP = lstBotones.get(row).get(column);
+                            btnP.setBackground(Color.RED);
+                            btnP.setText(txt);
+                            btnP.setOpaque(true);
+                        });
+                        break;
+                    case '-':
+                        System.out.println("Caso -");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnM = lstBotones.get(row).get(column);
+                            btnM.setBackground(Color.BLUE);
+                            btnM.setText(txt);
+                            btnM.setOpaque(true);
+                        });
+                        break;
+                    case 'x':
+                        System.out.println("Caso x");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnX = lstBotones.get(row).get(column);
+                            btnX.setBackground(Color.ORANGE);
+                            btnX.setText(txt);
+                            btnX.setOpaque(true);
+                        });
+                        break;
+                    case '/':
+                        System.out.println("Caso /");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnD = lstBotones.get(row).get(column);
+                            btnD.setBackground(Color.GREEN);
+                            btnD.setText(txt);
+                            btnD.setOpaque(true);
+                        });
+                        break;
+                    case 'n':
+                        System.out.println("Caso n");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnN = lstBotones.get(row).get(column);
+                            btnN.setBackground(Color.WHITE);
+                            btnN.setText(txt);
+                            btnN.setOpaque(true);
+                        });
+                        break;
+                } 
+            } 
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -223,6 +240,9 @@ public class VentanaJugar extends javax.swing.JFrame {
         jToggleButton10 = new javax.swing.JToggleButton();
         jToggleButton11 = new javax.swing.JToggleButton();
         jToggleButton12 = new javax.swing.JToggleButton();
+        btnDeshacer = new javax.swing.JButton();
+        btnRehacer = new javax.swing.JButton();
+        btnIniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -797,22 +817,55 @@ public class VentanaJugar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnDeshacer.setBackground(new java.awt.Color(255, 153, 0));
+        btnDeshacer.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeshacer.setText("DESHACER");
+        btnDeshacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeshacerActionPerformed(evt);
+            }
+        });
+
+        btnRehacer.setBackground(new java.awt.Color(102, 204, 255));
+        btnRehacer.setForeground(new java.awt.Color(255, 255, 255));
+        btnRehacer.setText("REHACER");
+        btnRehacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRehacerActionPerformed(evt);
+            }
+        });
+
+        btnIniciar.setBackground(new java.awt.Color(255, 102, 102));
+        btnIniciar.setText("INICIAR JUEGO");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
-                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(360, 360, 360))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnDeshacer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRehacer)
+                        .addGap(232, 232, 232)
+                        .addComponent(btnIniciar))
+                    .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -823,7 +876,12 @@ public class VentanaJugar extends javax.swing.JFrame {
                     .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 153, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDeshacer, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRehacer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 103, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -843,73 +901,73 @@ public class VentanaJugar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
-    String nombre = jToggleButton9.getText().toString();
+    String nombre = jToggleButton9.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;     // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton9ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-    String nombre = jToggleButton1.getText().toString();
+    String nombre = jToggleButton1.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-    String nombre = jToggleButton7.getText().toString();
+    String nombre = jToggleButton7.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
-    String nombre = jToggleButton8.getText().toString();
+    String nombre = jToggleButton8.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
     private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
-    String nombre = jToggleButton10.getText().toString();
+    String nombre = jToggleButton10.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;     // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton10ActionPerformed
 
     private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
-    String nombre = jToggleButton11.getText().toString();
+    String nombre = jToggleButton11.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton11ActionPerformed
 
     private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
-    String nombre = jToggleButton12.getText().toString();
+    String nombre = jToggleButton12.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton12ActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-     String nombre = jToggleButton2.getText().toString();
+     String nombre = jToggleButton2.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;// TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-    String nombre = jToggleButton3.getText().toString();
+    String nombre = jToggleButton3.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
-     String nombre = jToggleButton4.getText().toString();
+     String nombre = jToggleButton4.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
-    String nombre = jToggleButton5.getText().toString();
+    String nombre = jToggleButton5.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
-    String nombre = jToggleButton6.getText().toString();
+    String nombre = jToggleButton6.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton6ActionPerformed
@@ -917,291 +975,336 @@ public class VentanaJugar extends javax.swing.JFrame {
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(1,1,valoranterior);
+        String valoranterior=btn11.getText();
+        listaJugadas.agregarJugada(0,0,valoranterior);
         btn11.setText(text); } 
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(1,2,valoranterior);
+        String valoranterior=btn12.getText();
+        listaJugadas.agregarJugada(0,1,valoranterior);
         btn12.setText(text); } 
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(1,3,valoranterior);
+        String valoranterior=btn13.getText();
+        listaJugadas.agregarJugada(0,2,valoranterior);
         btn13.setText(text); }     
     }//GEN-LAST:event_btn13ActionPerformed
 
     private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(1,4,valoranterior);
+        String valoranterior=btn14.getText();
+        listaJugadas.agregarJugada(0,3,valoranterior);
         btn14.setText(text); }   
     }//GEN-LAST:event_btn14ActionPerformed
 
     private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(1,5,valoranterior);
+        String valoranterior=btn15.getText();
+        listaJugadas.agregarJugada(0,4,valoranterior);
         btn15.setText(text); }  
     }//GEN-LAST:event_btn15ActionPerformed
 
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(1,6,valoranterior);
+        String valoranterior=btn16.getText();
+        listaJugadas.agregarJugada(0,5,valoranterior);
         btn16.setText(text); } 
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(2,1,valoranterior);
+        String valoranterior=btn21.getText();
+        listaJugadas.agregarJugada(1,0,valoranterior);
         btn21.setText(text); }  
     }//GEN-LAST:event_btn21ActionPerformed
 
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(2,2,valoranterior);
+        String valoranterior=btn22.getText();
+        listaJugadas.agregarJugada(1,1,valoranterior);
         btn22.setText(text); }  
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(2,3,valoranterior);
+        String valoranterior=btn23.getText();
+        listaJugadas.agregarJugada(1,2,valoranterior);
         btn23.setText(text); }         
     }//GEN-LAST:event_btn23ActionPerformed
 
     private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(2,4,valoranterior);
+        String valoranterior=btn24.getText();
+        listaJugadas.agregarJugada(1,3,valoranterior);
         btn24.setText(text); }    
     }//GEN-LAST:event_btn24ActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(2,5,valoranterior);
+        String valoranterior=btn25.getText();
+        listaJugadas.agregarJugada(1,4,valoranterior);
         btn25.setText(text); }  
     }//GEN-LAST:event_btn25ActionPerformed
 
     private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn26ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(2,6,valoranterior);
+        String valoranterior=btn26.getText();
+        listaJugadas.agregarJugada(1,5,valoranterior);
         btn26.setText(text); } 
     }//GEN-LAST:event_btn26ActionPerformed
 
     private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(3,1,valoranterior);
+        String valoranterior=btn31.getText();
+        listaJugadas.agregarJugada(2,0,valoranterior);
         btn31.setText(text); } 
     }//GEN-LAST:event_btn31ActionPerformed
 
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-       String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(3,2,valoranterior);
+       String valoranterior=btn32.getText();
+        listaJugadas.agregarJugada(2,1,valoranterior);
         btn32.setText(text); }  
     }//GEN-LAST:event_btn32ActionPerformed
 
     private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(3,3,valoranterior);
+        String valoranterior=btn33.getText();
+        listaJugadas.agregarJugada(2,2,valoranterior);
         btn33.setText(text); } 
     }//GEN-LAST:event_btn33ActionPerformed
 
     private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn34ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(3,4,valoranterior);
+        String valoranterior=btn34.getText();
+        listaJugadas.agregarJugada(2,3,valoranterior);
         btn34.setText(text); }   
     }//GEN-LAST:event_btn34ActionPerformed
 
     private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn35ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(3,5,valoranterior);
+        String valoranterior=btn35.getText();
+        listaJugadas.agregarJugada(2,4,valoranterior);
         btn35.setText(text); }   
     }//GEN-LAST:event_btn35ActionPerformed
 
     private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn36ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(3,6,valoranterior);
+        String valoranterior=btn36.getText();
+        listaJugadas.agregarJugada(2,5,valoranterior);
         btn36.setText(text); }
     }//GEN-LAST:event_btn36ActionPerformed
 
     private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(4,1,valoranterior);
+        String valoranterior=btn41.getText();
+        listaJugadas.agregarJugada(3,0,valoranterior);
         btn41.setText(text); }   
     }//GEN-LAST:event_btn41ActionPerformed
 
     private void btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn42ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(4,2,valoranterior);
+        String valoranterior=btn42.getText();
+        listaJugadas.agregarJugada(3,1,valoranterior);
         btn42.setText(text); }   
     }//GEN-LAST:event_btn42ActionPerformed
 
     private void btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn43ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(4,3,valoranterior);
+        String valoranterior=btn43.getText();
+        listaJugadas.agregarJugada(3,2,valoranterior);
         btn43.setText(text); } 
     }//GEN-LAST:event_btn43ActionPerformed
 
     private void btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn44ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(4,4,valoranterior);
+        String valoranterior=btn44.getText();
+        listaJugadas.agregarJugada(3,3,valoranterior);
         btn44.setText(text); } 
     }//GEN-LAST:event_btn44ActionPerformed
 
     private void btn45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn45ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-       String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(4,5,valoranterior);
+       String valoranterior=btn45.getText();
+        listaJugadas.agregarJugada(3,4,valoranterior);
         btn45.setText(text); }    
     }//GEN-LAST:event_btn45ActionPerformed
 
     private void btn46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn46ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(4,6,valoranterior);
+        String valoranterior=btn46.getText();
+        listaJugadas.agregarJugada(3,5,valoranterior);
         btn46.setText(text); }    
     }//GEN-LAST:event_btn46ActionPerformed
 
     private void btn51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn51ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(5,1,valoranterior);
+        String valoranterior=btn51.getText();
+        listaJugadas.agregarJugada(4,0,valoranterior);
         btn51.setText(text); }  
     }//GEN-LAST:event_btn51ActionPerformed
 
     private void btn52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn52ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(5,2,valoranterior);
+        String valoranterior=btn52.getText();
+        listaJugadas.agregarJugada(4,1,valoranterior);
         btn52.setText(text); }  
     }//GEN-LAST:event_btn52ActionPerformed
 
     private void btn53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn53ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(5,3,valoranterior);
+        String valoranterior=btn53.getText();
+        listaJugadas.agregarJugada(4,2,valoranterior);
         btn53.setText(text); }  
     }//GEN-LAST:event_btn53ActionPerformed
 
     private void btn54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn54ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(5,4,valoranterior);
+        String valoranterior=btn54.getText();
+        listaJugadas.agregarJugada(4,3,valoranterior);
         btn54.setText(text); } 
     }//GEN-LAST:event_btn54ActionPerformed
 
     private void btn55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn55ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(5,5,valoranterior);
+        String valoranterior=btn55.getText();
+        listaJugadas.agregarJugada(4,4,valoranterior);
         btn55.setText(text); }  
     }//GEN-LAST:event_btn55ActionPerformed
 
     private void btn56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn56ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(5,6,valoranterior);
+        String valoranterior=btn56.getText();
+        listaJugadas.agregarJugada(4,5,valoranterior);
         btn56.setText(text); }  
     }//GEN-LAST:event_btn56ActionPerformed
 
     private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(6,1,valoranterior);
+        String valoranterior=btn61.getText();
+        listaJugadas.agregarJugada(5,0,valoranterior);
         btn61.setText(text); }  
     }//GEN-LAST:event_btn61ActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(6,2,valoranterior);
+        String valoranterior=btn62.getText();
+        listaJugadas.agregarJugada(5,1,valoranterior);
         btn62.setText(text); }  
     }//GEN-LAST:event_btn62ActionPerformed
 
     private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(6,3,valoranterior);
+        String valoranterior=btn63.getText();
+        listaJugadas.agregarJugada(5,2,valoranterior);
         btn63.setText(text); }   
     }//GEN-LAST:event_btn63ActionPerformed
 
     private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(6,4,valoranterior);
+        String valoranterior=btn64.getText();
+        listaJugadas.agregarJugada(5,3,valoranterior);
         btn64.setText(text); }    
     }//GEN-LAST:event_btn64ActionPerformed
 
     private void btn65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn65ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText();
-        listaJugadas.agregarJugada(6,5,valoranterior);
+        String valoranterior=btn65.getText();
+        listaJugadas.agregarJugada(5,4,valoranterior);
         btn65.setText(text); }  
     }//GEN-LAST:event_btn65ActionPerformed
 
     private void btn66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn66ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
-        String valoranterior=btn66.getText().toString();
-        listaJugadas.agregarJugada(6,6,valoranterior);
+        String valoranterior=btn66.getText();
+        listaJugadas.agregarJugada(5,5,valoranterior);
         btn66.setText(text); } 
     }//GEN-LAST:event_btn66ActionPerformed
 
+    private void btnDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshacerActionPerformed
+        btnDeshacer.setOpaque(true);
+        btnDeshacer.setBorderPainted(false);
+        //listaJugadas.verUltimaJugada();
+        
+        Nodo jugada = listaJugadas.popUltimaJugada();
+        int jRow = jugada.getRow();
+        int jCol = jugada.getCol();
+        String jValAnt = jugada.getValorAnterior();
+        
+        JButton btn = lstBotones.get(jRow).get(jCol);
+        String textPrev = btn.getText();
+        
+        jugadasDeshechas.agregarJugada(jRow, jCol, textPrev);
+        btn.setText(jValAnt);
+    }//GEN-LAST:event_btnDeshacerActionPerformed
+
+    private void btnRehacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRehacerActionPerformed
+        btnRehacer.setOpaque(true);
+        btnRehacer.setBorderPainted(false);
+        
+        Nodo jugada = jugadasDeshechas.popUltimaJugada();
+        int jRow = jugada.getRow();
+        int jCol = jugada.getCol();
+        String jValAnt = jugada.getValorAnterior();
+        
+        System.out.println("Row: " + jRow);
+        System.out.println("Col: " + jCol);
+        System.out.println("ValAnt: " + jValAnt);
+        
+        JButton btn = lstBotones.get(jRow).get(jCol);
+        String txt = btn.getText();
+        
+        listaJugadas.agregarJugada(jRow, jCol, txt);
+        btn.setText(jValAnt);
+    }//GEN-LAST:event_btnRehacerActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        btnIniciar.setOpaque(true);
+        btnIniciar.setBorderPainted(false);
+        btnIniciar.setEnabled(false);
+        
+        cargarTablero(dificultad);
+    }//GEN-LAST:event_btnIniciarActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -1275,6 +1378,9 @@ public class VentanaJugar extends javax.swing.JFrame {
     private javax.swing.JButton btn64;
     private javax.swing.JButton btn65;
     private javax.swing.JButton btn66;
+    private javax.swing.JButton btnDeshacer;
+    private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnRehacer;
     private javax.swing.JPanel btnsDer;
     private javax.swing.JPanel btnsIzq;
     private javax.swing.ButtonGroup buttonGroup1;

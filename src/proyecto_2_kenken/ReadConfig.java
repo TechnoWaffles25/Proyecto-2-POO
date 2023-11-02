@@ -39,7 +39,7 @@ public class ReadConfig {
     public String getReloj(){
         return config.getReloj();
     }
-    public String getPosicion(){
+    public boolean getPosicion(){
         return config.getPosicion();
     }
     public boolean getSonido(){
