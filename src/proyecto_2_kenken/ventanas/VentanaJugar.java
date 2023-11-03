@@ -23,6 +23,7 @@ public class VentanaJugar extends javax.swing.JFrame {
     public List<JButton> sublstBotones = new ArrayList<>();
     private String dificultad;
     private int valornuevo;
+    private Partida partidaActual;
     
     /**
      * Creates new form VentanaJugar
@@ -30,6 +31,10 @@ public class VentanaJugar extends javax.swing.JFrame {
     public VentanaJugar() {
         initComponents();
         
+        btnTerminar.setEnabled(false);
+        btnOtraPartida.setEnabled(false);
+        btnRehacer.setEnabled(false);
+        btnDeshacer.setEnabled(false);
         ReadConfig readconfig = new ReadConfig();
         readconfig.readConfiguration();
         
@@ -49,6 +54,17 @@ public class VentanaJugar extends javax.swing.JFrame {
         // List Jugadas
         // Deshacer Jugadasx
         // Indices Jugadas deshechas
+        
+        btnTerminar.setOpaque(true);
+        btnTerminar.setBorderPainted(false);
+        btnIniciar.setOpaque(true);
+        btnIniciar.setBorderPainted(false);
+        btnOtraPartida.setOpaque(true);
+        btnOtraPartida.setBorderPainted(false);
+        btnDeshacer.setOpaque(true);
+        btnDeshacer.setBorderPainted(false);
+        btnRehacer.setOpaque(true);
+        btnRehacer.setBorderPainted(false);
         
         
     }
@@ -112,6 +128,7 @@ public class VentanaJugar extends javax.swing.JFrame {
 
             ReadPartidaXML reader = new ReadPartidaXML();
             Partida partida = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
+            partidaActual = partida;
             List<Cell> lstCells = partida.getCells();
 
             int i = 1;
@@ -244,6 +261,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnDeshacer = new javax.swing.JButton();
         btnRehacer = new javax.swing.JButton();
         btnIniciar = new javax.swing.JButton();
+        btnTerminar = new javax.swing.JButton();
+        btnOtraPartida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -836,11 +855,27 @@ public class VentanaJugar extends javax.swing.JFrame {
             }
         });
 
-        btnIniciar.setBackground(new java.awt.Color(255, 102, 102));
+        btnIniciar.setBackground(new java.awt.Color(204, 255, 102));
         btnIniciar.setText("INICIAR JUEGO");
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
+            }
+        });
+
+        btnTerminar.setBackground(new java.awt.Color(255, 51, 51));
+        btnTerminar.setText("TERMINAR JUEGO");
+        btnTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarActionPerformed(evt);
+            }
+        });
+
+        btnOtraPartida.setBackground(new java.awt.Color(204, 255, 255));
+        btnOtraPartida.setText("OTRO JUEGO");
+        btnOtraPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOtraPartidaActionPerformed(evt);
             }
         });
 
@@ -857,13 +892,17 @@ public class VentanaJugar extends javax.swing.JFrame {
                 .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(117, 117, 117)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnDeshacer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRehacer)
                         .addGap(232, 232, 232)
-                        .addComponent(btnIniciar))
-                    .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnOtraPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -882,7 +921,11 @@ public class VentanaJugar extends javax.swing.JFrame {
                     .addComponent(btnDeshacer, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRehacer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 103, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOtraPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1114,7 +1157,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn36.getText();
         listaJugadas.agregarJugada(2,5,valoranterior);
-        btn36.setText(text); }
+        btn36.setText(text);}
     }//GEN-LAST:event_btn36ActionPerformed
 
     private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
@@ -1309,12 +1352,39 @@ public class VentanaJugar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRehacerActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        btnIniciar.setOpaque(true);
-        btnIniciar.setBorderPainted(false);
         btnIniciar.setEnabled(false);
-        
+        btnTerminar.setEnabled(true);
+        btnOtraPartida.setEnabled(true);
+        btnRehacer.setEnabled(true);
+        btnDeshacer.setEnabled(true);
         cargarTablero(dificultad);
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(rootPane, "Desea terminar el juego? Su progreso no sera guardado!");
+        if (partidaActual != null){
+            if (confirm == JOptionPane.YES_OPTION){
+            System.out.println("Terminando juego...");
+            setVisible(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No se puede terminar el juego porque no hay ningun juego en curso");
+        }
+        
+    }//GEN-LAST:event_btnTerminarActionPerformed
+
+    private void btnOtraPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtraPartidaActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(rootPane, "Desea cargar otro tablero?");
+        if (confirm == JOptionPane.YES_OPTION){
+            System.out.println("Cargando otro tablero...");
+            lstBotones.clear();
+            sublstBotones.clear();
+            listaJugadas.clearList();
+            jugadasDeshechas.clearList();
+            cargarTablero(dificultad);
+            
+        }
+    }//GEN-LAST:event_btnOtraPartidaActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1391,7 +1461,9 @@ public class VentanaJugar extends javax.swing.JFrame {
     private javax.swing.JButton btn66;
     private javax.swing.JButton btnDeshacer;
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnOtraPartida;
     private javax.swing.JButton btnRehacer;
+    private javax.swing.JButton btnTerminar;
     private javax.swing.JPanel btnsDer;
     private javax.swing.JPanel btnsIzq;
     private javax.swing.ButtonGroup buttonGroup1;

@@ -30,6 +30,10 @@ public class Lists {
             cola=newnodo;
         }
     }
+    public void clearList() {
+        cabeza = null;
+        cola = null;
+    }
     public Nodo verUltimaJugada(){
         System.out.println("Cola: " + cola);
         return cola;    
