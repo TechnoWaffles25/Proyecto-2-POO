@@ -16,10 +16,11 @@ public class Lists {
 
     public Lists() {
         this.cabeza = null;
+        this.cola=null;
     }
     public void agregarJugada(int row, int col, String numerocambiado){
         Nodo newnodo= new Nodo(col,row,numerocambiado);
-        if (cabeza==null){
+        if (cabeza==null || cola==null){
             cabeza=newnodo;
             cola=newnodo;
         }

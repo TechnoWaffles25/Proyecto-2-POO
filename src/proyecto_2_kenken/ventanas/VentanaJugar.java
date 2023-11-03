@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import proyecto_2_kenken.*;
 import proyecto_2_kenken.classes.*;
@@ -1266,6 +1267,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         //listaJugadas.verUltimaJugada();
         
         Nodo jugada = listaJugadas.popUltimaJugada();
+        if (jugada !=null){
         int jRow = jugada.getRow();
         int jCol = jugada.getCol();
         String jValAnt = jugada.getValorAnterior();
@@ -1274,7 +1276,11 @@ public class VentanaJugar extends javax.swing.JFrame {
         String textPrev = btn.getText();
         
         jugadasDeshechas.agregarJugada(jRow, jCol, textPrev);
-        btn.setText(jValAnt);
+        btn.setText(jValAnt);}
+        else{
+            JOptionPane.showMessageDialog(null, "No se puede deshacer ninguna jugada");
+            System.out.println("jugada = null, no se puede deshacer nada");
+        }
     }//GEN-LAST:event_btnDeshacerActionPerformed
 
     private void btnRehacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRehacerActionPerformed
@@ -1282,6 +1288,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnRehacer.setBorderPainted(false);
         
         Nodo jugada = jugadasDeshechas.popUltimaJugada();
+        if (jugada != null){
         int jRow = jugada.getRow();
         int jCol = jugada.getCol();
         String jValAnt = jugada.getValorAnterior();
@@ -1294,7 +1301,11 @@ public class VentanaJugar extends javax.swing.JFrame {
         String txt = btn.getText();
         
         listaJugadas.agregarJugada(jRow, jCol, txt);
-        btn.setText(jValAnt);
+        btn.setText(jValAnt);}
+        else{
+            JOptionPane.showMessageDialog(null, "No se puede rehacer ninguna jugada");
+            System.out.println("jugada = null, no se puede rehacer nada");
+        }
     }//GEN-LAST:event_btnRehacerActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
