@@ -11,7 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import proyecto_2_kenken.classes.*;
 
 public class ReadPartidaXML {
-    public Partida parseKenKenPartidas(String fileName, String difficulty) {
+    public List<Partida> parseKenKenPartidas(String fileName, String difficulty) {
         try {
             File xmlFile = new File(fileName);
 
@@ -19,6 +19,7 @@ public class ReadPartidaXML {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(xmlFile);
 
+            List<Partida> listaPartidas = new ArrayList<>();
             // Root element
             Element root = doc.getDocumentElement();
 
@@ -30,19 +31,16 @@ public class ReadPartidaXML {
                 // Find all partida elements within the specified difficulty
                 NodeList partidaList = difficultyElement.getElementsByTagName("partida");
 
-                // Check if there are any partida elements
-                if (partidaList.getLength() > 0) {
-                    // Choose a random partida
-                    int randomPartidaIndex = (int) (Math.random() * partidaList.getLength());
-                    Element partidaElement = (Element) partidaList.item(randomPartidaIndex);
+                for (int i = 0; i < partidaList.getLength(); i++) {
+                    Element partidaElement = (Element) partidaList.item(i);
 
                     // Create a list to store cells
                     List<Cell> cells = new ArrayList<>();
 
-                    // Find all cell elements within the random partida
+                    // Find all cell elements within the partida
                     NodeList cellList = partidaElement.getElementsByTagName("cell");
-                    for (int i = 0; i < cellList.getLength(); i++) {
-                        Element cellElement = (Element) cellList.item(i);
+                    for (int j = 0; j < cellList.getLength(); j++) {
+                        Element cellElement = (Element) cellList.item(j);
                         String cellData = cellElement.getTextContent();
                         String[] cellParts = cellData.split(",");
 
@@ -61,11 +59,10 @@ public class ReadPartidaXML {
 
                     // Create a Partida object with the list of cells
                     Partida partida = new Partida(cells);
-
-                    // Return the Partida object
-                    return partida;
+                    listaPartidas.add(partida);
                 }
             }
+            return listaPartidas;
         } catch (Exception e) {
             e.printStackTrace();
         }

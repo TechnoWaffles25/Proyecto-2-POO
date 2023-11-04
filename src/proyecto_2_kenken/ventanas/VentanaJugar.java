@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -25,6 +26,7 @@ public class VentanaJugar extends javax.swing.JFrame {
     public Lists jugadasDeshechas = new Lists();
     public List<List<JButton>> lstBotones = new ArrayList<>();
     public List<JButton> sublstBotones = new ArrayList<>();
+    public List<Integer> indicesVisitados = new ArrayList<>();
     public int valornuevo;
     
     public String dificultad;
@@ -36,6 +38,7 @@ public class VentanaJugar extends javax.swing.JFrame {
     public Duration tiempoTranscurrido;
     public Timer timer = new Timer(true);
     public boolean rstFlag = false;
+    public int indiceActual;
     
     /**
      * Creates new form VentanaJugar
@@ -158,12 +161,157 @@ public class VentanaJugar extends javax.swing.JFrame {
             lstBotones.add(sublstBotones);
 
             System.out.println(lstBotones);
-
+            
             ReadPartidaXML reader = new ReadPartidaXML();
-            Partida partida = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
-            partidaActual = partida;
-            List<Cell> lstCells = partida.getCells();
+            List<Partida> listaPartidas = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
+            List<Cell> lstCells = null;
+            Random random = new Random();
+            
+            while (indicesVisitados.size()<listaPartidas.size()){
+                indiceActual = random.nextInt(listaPartidas.size());
+                if (!indicesVisitados.contains(indiceActual)){
+                    System.out.println("Indice partida a jugar: " + indiceActual);
+                    indicesVisitados.add(indiceActual);
+                    Partida partida = listaPartidas.get(indiceActual);
+                    lstCells = partida.getCells();
+                    partidaActual = partida;
+                    break;
+                    
+                }
+            }
+            if (indicesVisitados.size() == listaPartidas.size()) {
+                System.out.println("Reset de partidas visitadas");
+                indicesVisitados.clear();
+            }
+            
+            int i = 1;
+            for (Cell cell : lstCells){
+                System.out.println(i + " " + cell.toString());
+                i++;
+            }
+            System.out.println("////////////////////////////////////////////");
 
+            for (Cell cell : lstCells){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                int row = cell.getRow();
+                int column = cell.getColumn();
+                String txt = Integer.toString(jtv) + operation;
+
+                switch(operation){
+                    case '+':
+                        System.out.println("Caso +");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnP = lstBotones.get(row).get(column);
+                            btnP.setBackground(Color.RED);
+                            btnP.setText(txt);
+                            btnP.setOpaque(true);
+                        });
+                        break;
+                    case '-':
+                        System.out.println("Caso -");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnM = lstBotones.get(row).get(column);
+                            btnM.setBackground(Color.BLUE);
+                            btnM.setText(txt);
+                            btnM.setOpaque(true);
+                        });
+                        break;
+                    case 'x':
+                        System.out.println("Caso x");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnX = lstBotones.get(row).get(column);
+                            btnX.setBackground(Color.ORANGE);
+                            btnX.setText(txt);
+                            btnX.setOpaque(true);
+                        });
+                        break;
+                    case '/':
+                        System.out.println("Caso /");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnD = lstBotones.get(row).get(column);
+                            btnD.setBackground(Color.GREEN);
+                            btnD.setText(txt);
+                            btnD.setOpaque(true);
+                        });
+                        break;
+                    case 'n':
+                        System.out.println("Caso n");
+                        SwingUtilities.invokeLater(() -> {
+                            JButton btnN = lstBotones.get(row).get(column);
+                            btnN.setBackground(Color.WHITE);
+                            btnN.setText(txt);
+                            btnN.setOpaque(true);
+                        });
+                        break;
+                } 
+            } 
+        }
+    
+    public void resetTablero(String dificultad, int indiceActual){
+            // Creamos las celdas
+            sublstBotones.add(btn11);
+            sublstBotones.add(btn12);
+            sublstBotones.add(btn13);
+            sublstBotones.add(btn14);
+            sublstBotones.add(btn15);
+            sublstBotones.add(btn16);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn21);
+            sublstBotones.add(btn22);
+            sublstBotones.add(btn23);
+            sublstBotones.add(btn24);
+            sublstBotones.add(btn25);
+            sublstBotones.add(btn26);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn31);
+            sublstBotones.add(btn32);
+            sublstBotones.add(btn33);
+            sublstBotones.add(btn34);
+            sublstBotones.add(btn35);
+            sublstBotones.add(btn36);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn41);
+            sublstBotones.add(btn42);
+            sublstBotones.add(btn43);
+            sublstBotones.add(btn44);
+            sublstBotones.add(btn45);
+            sublstBotones.add(btn46);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn51);
+            sublstBotones.add(btn52);
+            sublstBotones.add(btn53);
+            sublstBotones.add(btn54);
+            sublstBotones.add(btn55);
+            sublstBotones.add(btn56);
+            lstBotones.add(sublstBotones);
+            sublstBotones = new ArrayList<>();
+
+            sublstBotones.add(btn61);
+            sublstBotones.add(btn62);
+            sublstBotones.add(btn63);
+            sublstBotones.add(btn64);
+            sublstBotones.add(btn65);
+            sublstBotones.add(btn66);
+            lstBotones.add(sublstBotones);
+
+            System.out.println(lstBotones);
+            
+            ReadPartidaXML reader = new ReadPartidaXML();
+            List<Partida> listaPartidas = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
+            
+            Partida partida = listaPartidas.get(indiceActual);
+            List <Cell> lstCells = partida.getCells();
+            partidaActual = partida;
+            
             int i = 1;
             for (Cell cell : lstCells){
                 System.out.println(i + " " + cell.toString());
@@ -1009,6 +1157,11 @@ public class VentanaJugar extends javax.swing.JFrame {
 
         btnReiniciar.setBackground(new java.awt.Color(204, 204, 204));
         btnReiniciar.setText("REINICIAR");
+        btnReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReiniciarActionPerformed(evt);
+            }
+        });
 
         btnOtraPartida.setBackground(new java.awt.Color(204, 255, 255));
         btnOtraPartida.setText("OTRO JUEGO");
@@ -1540,6 +1693,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnRehacer.setEnabled(true);
         btnDeshacer.setEnabled(true);
         btnBorrarCasilla.setEnabled(true);
+        btnValidar.setEnabled(true);
+        btnReiniciar.setEnabled(true);
         
         lstBotones.clear();
         sublstBotones.clear();
@@ -1596,8 +1751,32 @@ public class VentanaJugar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOtraPartidaActionPerformed
 
     private void btnBorrarCasillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarCasillaActionPerformed
-        // TODO add your handling code here:
+        SoundPlayer victorySound = new SoundPlayer();
+        victorySound.playSound("win.wav");
+        System.out.println("Reproduciendo win.wav");
     }//GEN-LAST:event_btnBorrarCasillaActionPerformed
+
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(rootPane, "Desea recargar este tablero?");
+        if (confirm == JOptionPane.YES_OPTION){
+            System.out.println("Recargando el tablero...");
+            lstBotones.clear();
+            sublstBotones.clear();
+            listaJugadas.clearList();
+            jugadasDeshechas.clearList();
+            
+            stopTimerLabel();
+            resetTimerLabel();
+            if (rstFlag == true){
+                rstFlag = false;
+                reloj = "Timer";
+                lblReloj.setText("Timer: ");
+            }
+            resetTablero(dificultad, indiceActual);
+            startReloj();
+            
+        }
+    }//GEN-LAST:event_btnReiniciarActionPerformed
     
     /**
      * @param args the command line arguments
