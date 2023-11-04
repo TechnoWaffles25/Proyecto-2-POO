@@ -5,8 +5,12 @@
 package proyecto_2_kenken.ventanas;
 
 import java.awt.Color;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -21,9 +25,17 @@ public class VentanaJugar extends javax.swing.JFrame {
     public Lists jugadasDeshechas = new Lists();
     public List<List<JButton>> lstBotones = new ArrayList<>();
     public List<JButton> sublstBotones = new ArrayList<>();
-    private String dificultad;
-    private int valornuevo;
-    private Partida partidaActual;
+    public int valornuevo;
+    
+    public String dificultad;
+    public Partida partidaActual;
+    public boolean posicion;
+    public boolean sonido;
+    public String reloj;
+    public Duration tiempoJuego;
+    public Duration tiempoTranscurrido;
+    public Timer timer = new Timer(true);
+    public boolean rstFlag = false;
     
     /**
      * Creates new form VentanaJugar
@@ -35,38 +47,59 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnOtraPartida.setEnabled(false);
         btnRehacer.setEnabled(false);
         btnDeshacer.setEnabled(false);
+        btnBorrarCasilla.setEnabled(false);
+        btnReiniciar.setEnabled(false);
+        btnValidar.setEnabled(false);
+        
         ReadConfig readconfig = new ReadConfig();
         readconfig.readConfiguration();
         
-        String dificultadGame = readconfig.getDificultad();
-        System.out.println("Dificultad seleccionada: " + dificultadGame);
-        dificultad = dificultadGame;
+        dificultad = readconfig.getDificultad();
+        System.out.println("\nDificultad seleccionada: " + dificultad);
+        lblDificultad.setText(dificultad);
         
-        boolean posicion = readconfig.getPosicion();
-        if (posicion == true){
-            btnsDer.setVisible(true);
-            btnsIzq.setVisible(false);
-        } else {
-            btnsIzq.setVisible(true);
-            btnsDer.setVisible(false);
+        sonido = readconfig.getSonido();
+        System.out.println("Sonido al terminar juego: " + sonido);
+        
+        reloj = readconfig.getReloj();
+        System.out.println("Reloj seleccionado: " + reloj);
+        lblReloj.setText(reloj+":");
+        
+        posicion = readconfig.getPosicion();
+        System.out.println("Posicion de los botones (True der / False izq): " + posicion);
+        
+        btnsDer.setVisible(false);
+        btnsIzq.setVisible(false);
+        
+        tiempoJuego = readconfig.getDuration();
+        System.out.println("Tiempo para el timer: " + tiempoJuego);
+        if (tiempoJuego == null){
+            tiempoJuego = Duration.ofHours(0).plusMinutes(0).plusSeconds(0);
         }
-        
-        // List Jugadas
-        // Deshacer Jugadasx
-        // Indices Jugadas deshechas
         
         btnTerminar.setOpaque(true);
         btnTerminar.setBorderPainted(false);
+        
         btnIniciar.setOpaque(true);
         btnIniciar.setBorderPainted(false);
+        
         btnOtraPartida.setOpaque(true);
         btnOtraPartida.setBorderPainted(false);
+        
         btnDeshacer.setOpaque(true);
         btnDeshacer.setBorderPainted(false);
+        
         btnRehacer.setOpaque(true);
         btnRehacer.setBorderPainted(false);
         
+        btnBorrarCasilla.setOpaque(true);
+        btnBorrarCasilla.setBorderPainted(false);
         
+        btnValidar.setOpaque(true);
+        btnValidar.setBorderPainted(false);
+        
+        btnReiniciar.setOpaque(true);
+        btnReiniciar.setBorderPainted(false);
     }
     
     public void cargarTablero(String dificultad){
@@ -195,6 +228,108 @@ public class VentanaJugar extends javax.swing.JFrame {
             } 
         }
 
+    public void startReloj(){
+        if ("Cronometro".equals(reloj)){
+            System.out.println("Cronometro inicio...");
+
+            if (timer == null) {
+                timer = new Timer(true);
+            }
+            int pHoras = tiempoJuego.toHoursPart();
+            int pMinutos = tiempoJuego.toMinutesPart();
+            int pSegundos = tiempoJuego.toSecondsPart();
+            
+            tiempoTranscurrido = Duration.ofHours(pHoras).plusMinutes(pMinutos).plusSeconds(pSegundos);
+            Instant tiempoInicio = Instant.now().minus(tiempoTranscurrido);
+            
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    Instant now = Instant.now();
+                    tiempoTranscurrido = Duration.between(tiempoInicio, now);
+                    updateTimerLabel();
+                }
+            }, 0, 1000);
+        }
+        if ("Timer".equals(reloj)){
+            System.out.println("Timer inicio...");
+            
+            int pHoras = tiempoJuego.toHoursPart();
+            int pMinutos = tiempoJuego.toMinutesPart();
+            int pSegundos = tiempoJuego.toSecondsPart();
+            
+            tiempoTranscurrido = Duration.ofHours(pHoras).plusMinutes(pMinutos).plusSeconds(pSegundos);
+            Instant tiempoInicio = Instant.now().plus(tiempoTranscurrido);
+            if (timer == null) {
+            timer = new Timer(true);
+            } else {
+                // If the timer was previously canceled, create a new instance
+                timer = new Timer(true);
+            } timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    Instant now = Instant.now();
+                    tiempoTranscurrido = Duration.between(now, tiempoInicio);
+                    updateTimerLabel();
+
+                    if (tiempoTranscurrido.isNegative() || tiempoTranscurrido.isZero()) {
+                        int opt = JOptionPane.showConfirmDialog(rootPane, "Se acabo el tiempo! Desea continuar el juego?");
+                        if (opt == JOptionPane.YES_OPTION){
+                            reloj = "Cronometro";
+                            lblReloj.setText("Cronometro:");
+                            System.out.println("TiempoJuego: " + tiempoJuego);
+                            timer.cancel();
+                            timer = new Timer(true);
+                            rstFlag = true;
+                            startReloj();
+                        } else {
+                            timer.cancel();
+                        }
+                        
+                    }
+                }
+            }, 0, 1000);
+        }
+    }
+    
+    private void updateTimerLabel() {
+        long hours = tiempoTranscurrido.toHours();
+        long minutes = tiempoTranscurrido.toMinutesPart();
+        long seconds = tiempoTranscurrido.toSecondsPart();
+
+        String tiempoStr = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        lblTiempo.setText(tiempoStr);
+    }
+    
+    private void resetTimerLabel(){
+        long hours = 00;
+        long minutes = 00;
+        long seconds = 00;
+
+        String tiempoStr = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+        lblTiempo.setText(tiempoStr);
+    }
+    
+    private void stopTimerLabel() {                                           
+        if ("Cronometro".equals(reloj)){
+                System.out.println("Cronometro Stop");
+
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                }
+                resetTimerLabel();
+                btnIniciar.setEnabled(true);
+
+            } if ("Timer".equals(reloj)){
+                System.out.println("Timer Stop");
+
+        }
+    }
+    
+    private void pauseTimerLabel(){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -258,10 +393,17 @@ public class VentanaJugar extends javax.swing.JFrame {
         jToggleButton10 = new javax.swing.JToggleButton();
         jToggleButton11 = new javax.swing.JToggleButton();
         jToggleButton12 = new javax.swing.JToggleButton();
-        btnDeshacer = new javax.swing.JButton();
+        lblDificultad = new javax.swing.JLabel();
+        lblTiempo = new javax.swing.JLabel();
+        lblReloj = new javax.swing.JLabel();
+        panelBts = new javax.swing.JPanel();
         btnRehacer = new javax.swing.JButton();
+        btnDeshacer = new javax.swing.JButton();
+        btnBorrarCasilla = new javax.swing.JButton();
+        btnValidar = new javax.swing.JButton();
         btnIniciar = new javax.swing.JButton();
         btnTerminar = new javax.swing.JButton();
+        btnReiniciar = new javax.swing.JButton();
         btnOtraPartida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -271,256 +413,220 @@ public class VentanaJugar extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(204, 204, 204));
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("KenKen\n");
+        jLabel1.setText("DIficultad:");
 
         boardPanel.setBackground(new java.awt.Color(102, 102, 102));
 
-        btn11.setText("jButton1");
         btn11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn11ActionPerformed(evt);
             }
         });
 
-        btn12.setText("jButton1");
         btn12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn12ActionPerformed(evt);
             }
         });
 
-        btn13.setText("jButton1");
         btn13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn13ActionPerformed(evt);
             }
         });
 
-        btn14.setText("jButton1");
         btn14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn14ActionPerformed(evt);
             }
         });
 
-        btn15.setText("jButton1");
         btn15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn15ActionPerformed(evt);
             }
         });
 
-        btn16.setText("jButton1");
         btn16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn16ActionPerformed(evt);
             }
         });
 
-        btn21.setText("jButton1");
         btn21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn21ActionPerformed(evt);
             }
         });
 
-        btn22.setText("jButton1");
         btn22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn22ActionPerformed(evt);
             }
         });
 
-        btn23.setText("jButton1");
         btn23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn23ActionPerformed(evt);
             }
         });
 
-        btn24.setText("jButton1");
         btn24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn24ActionPerformed(evt);
             }
         });
 
-        btn25.setText("jButton1");
         btn25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn25ActionPerformed(evt);
             }
         });
 
-        btn26.setText("jButton1");
         btn26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn26ActionPerformed(evt);
             }
         });
 
-        btn31.setText("jButton1");
         btn31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn31ActionPerformed(evt);
             }
         });
 
-        btn32.setText("jButton1");
         btn32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn32ActionPerformed(evt);
             }
         });
 
-        btn33.setText("jButton1");
         btn33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn33ActionPerformed(evt);
             }
         });
 
-        btn34.setText("jButton1");
         btn34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn34ActionPerformed(evt);
             }
         });
 
-        btn35.setText("jButton1");
         btn35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn35ActionPerformed(evt);
             }
         });
 
-        btn36.setText("jButton1");
         btn36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn36ActionPerformed(evt);
             }
         });
 
-        btn41.setText("jButton1");
         btn41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn41ActionPerformed(evt);
             }
         });
 
-        btn42.setText("jButton1");
         btn42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn42ActionPerformed(evt);
             }
         });
 
-        btn43.setText("jButton1");
         btn43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn43ActionPerformed(evt);
             }
         });
 
-        btn44.setText("jButton1");
         btn44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn44ActionPerformed(evt);
             }
         });
 
-        btn45.setText("jButton1");
         btn45.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn45ActionPerformed(evt);
             }
         });
 
-        btn46.setText("jButton1");
         btn46.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn46ActionPerformed(evt);
             }
         });
 
-        btn51.setText("jButton1");
         btn51.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn51ActionPerformed(evt);
             }
         });
 
-        btn52.setText("jButton1");
         btn52.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn52ActionPerformed(evt);
             }
         });
 
-        btn53.setText("jButton1");
         btn53.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn53ActionPerformed(evt);
             }
         });
 
-        btn54.setText("jButton1");
         btn54.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn54ActionPerformed(evt);
             }
         });
 
-        btn55.setText("jButton1");
         btn55.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn55ActionPerformed(evt);
             }
         });
 
-        btn56.setText("jButton1");
         btn56.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn56ActionPerformed(evt);
             }
         });
 
-        btn61.setText("jButton1");
         btn61.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn61ActionPerformed(evt);
             }
         });
 
-        btn62.setText("jButton1");
         btn62.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn62ActionPerformed(evt);
             }
         });
 
-        btn64.setText("jButton1");
         btn64.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn64ActionPerformed(evt);
             }
         });
 
-        btn63.setText("jButton1");
         btn63.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn63ActionPerformed(evt);
             }
         });
 
-        btn65.setText("jButton1");
         btn65.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn65ActionPerformed(evt);
             }
         });
 
-        btn66.setText("jButton1");
         btn66.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn66ActionPerformed(evt);
@@ -721,13 +827,14 @@ public class VentanaJugar extends javax.swing.JFrame {
             btnsIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnsIzqLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(btnsIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(btnsIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(btnsIzqLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jToggleButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jToggleButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnsIzqLayout.setVerticalGroup(
@@ -837,14 +944,20 @@ public class VentanaJugar extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnDeshacer.setBackground(new java.awt.Color(255, 153, 0));
-        btnDeshacer.setForeground(new java.awt.Color(255, 255, 255));
-        btnDeshacer.setText("DESHACER");
-        btnDeshacer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeshacerActionPerformed(evt);
-            }
-        });
+        lblDificultad.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
+        lblDificultad.setForeground(new java.awt.Color(255, 255, 255));
+        lblDificultad.setText("Test");
+
+        lblTiempo.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
+        lblTiempo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTiempo.setText("00:00:00");
+
+        lblReloj.setBackground(new java.awt.Color(204, 204, 204));
+        lblReloj.setFont(new java.awt.Font("Helvetica Neue", 3, 24)); // NOI18N
+        lblReloj.setForeground(new java.awt.Color(204, 204, 204));
+        lblReloj.setText("Cronometro:");
+
+        panelBts.setBackground(new java.awt.Color(102, 102, 102));
 
         btnRehacer.setBackground(new java.awt.Color(102, 204, 255));
         btnRehacer.setForeground(new java.awt.Color(255, 255, 255));
@@ -854,6 +967,26 @@ public class VentanaJugar extends javax.swing.JFrame {
                 btnRehacerActionPerformed(evt);
             }
         });
+
+        btnDeshacer.setBackground(new java.awt.Color(255, 153, 0));
+        btnDeshacer.setForeground(new java.awt.Color(255, 255, 255));
+        btnDeshacer.setText("DESHACER");
+        btnDeshacer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeshacerActionPerformed(evt);
+            }
+        });
+
+        btnBorrarCasilla.setText("BORRAR CASILLA");
+        buttonGroup1.add(btnBorrarCasilla);
+        btnBorrarCasilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarCasillaActionPerformed(evt);
+            }
+        });
+
+        btnValidar.setBackground(new java.awt.Color(255, 204, 0));
+        btnValidar.setText("VALIDAR JUEGO");
 
         btnIniciar.setBackground(new java.awt.Color(204, 255, 102));
         btnIniciar.setText("INICIAR JUEGO");
@@ -871,6 +1004,9 @@ public class VentanaJugar extends javax.swing.JFrame {
             }
         });
 
+        btnReiniciar.setBackground(new java.awt.Color(204, 204, 204));
+        btnReiniciar.setText("REINICIAR");
+
         btnOtraPartida.setBackground(new java.awt.Color(204, 255, 255));
         btnOtraPartida.setText("OTRO JUEGO");
         btnOtraPartida.addActionListener(new java.awt.event.ActionListener() {
@@ -879,62 +1015,103 @@ public class VentanaJugar extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout panelBtsLayout = new javax.swing.GroupLayout(panelBts);
+        panelBts.setLayout(panelBtsLayout);
+        panelBtsLayout.setHorizontalGroup(
+            panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBtsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBtsLayout.createSequentialGroup()
+                        .addComponent(btnDeshacer, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTerminar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelBtsLayout.createSequentialGroup()
+                        .addComponent(btnBorrarCasilla, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnValidar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelBtsLayout.createSequentialGroup()
+                        .addComponent(btnRehacer, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnOtraPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        panelBtsLayout.setVerticalGroup(
+            panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBtsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnOtraPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRehacer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeshacer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBorrarCasilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(360, 360, 360))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
+                .addGap(175, 175, 175)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelBts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnDeshacer)
+                        .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRehacer)
-                        .addGap(232, 232, 232)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnOtraPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblDificultad)
+                                .addGap(56, 56, 56)
+                                .addComponent(lblReloj)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTiempo))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblDificultad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblTiempo)
+                    .addComponent(lblReloj))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnDeshacer, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRehacer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOtraPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                    .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addComponent(panelBts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1357,7 +1534,23 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnOtraPartida.setEnabled(true);
         btnRehacer.setEnabled(true);
         btnDeshacer.setEnabled(true);
+        btnBorrarCasilla.setEnabled(true);
+        
+        lstBotones.clear();
+        sublstBotones.clear();
+        listaJugadas.clearList();
+        jugadasDeshechas.clearList();
+        
+        if (posicion == true){
+            btnsDer.setVisible(true);
+            btnsIzq.setVisible(false);
+        } else {
+            btnsIzq.setVisible(true);
+            btnsDer.setVisible(false);
+        }
+        
         cargarTablero(dificultad);
+        startReloj();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
@@ -1365,6 +1558,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         if (partidaActual != null){
             if (confirm == JOptionPane.YES_OPTION){
             System.out.println("Terminando juego...");
+            stopTimerLabel();
+            resetTimerLabel();
             setVisible(false);
             }
         } else {
@@ -1381,10 +1576,23 @@ public class VentanaJugar extends javax.swing.JFrame {
             sublstBotones.clear();
             listaJugadas.clearList();
             jugadasDeshechas.clearList();
+            
+            stopTimerLabel();
+            resetTimerLabel();
+            if (rstFlag == true){
+                rstFlag = false;
+                reloj = "Timer";
+                lblReloj.setText("Timer: ");
+            }
             cargarTablero(dificultad);
+            startReloj();
             
         }
     }//GEN-LAST:event_btnOtraPartidaActionPerformed
+
+    private void btnBorrarCasillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarCasillaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarCasillaActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1459,11 +1667,14 @@ public class VentanaJugar extends javax.swing.JFrame {
     private javax.swing.JButton btn64;
     private javax.swing.JButton btn65;
     private javax.swing.JButton btn66;
+    private javax.swing.JButton btnBorrarCasilla;
     private javax.swing.JButton btnDeshacer;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnOtraPartida;
     private javax.swing.JButton btnRehacer;
+    private javax.swing.JButton btnReiniciar;
     private javax.swing.JButton btnTerminar;
+    private javax.swing.JButton btnValidar;
     private javax.swing.JPanel btnsDer;
     private javax.swing.JPanel btnsIzq;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -1481,5 +1692,9 @@ public class VentanaJugar extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JToggleButton jToggleButton9;
+    private javax.swing.JLabel lblDificultad;
+    private javax.swing.JLabel lblReloj;
+    private javax.swing.JLabel lblTiempo;
+    private javax.swing.JPanel panelBts;
     // End of variables declaration//GEN-END:variables
 }
