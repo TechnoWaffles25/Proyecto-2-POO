@@ -27,6 +27,7 @@ public class VentanaJugar extends javax.swing.JFrame {
     public List<List<JButton>> lstBotones = new ArrayList<>();
     public List<JButton> sublstBotones = new ArrayList<>();
     public List<Integer> indicesVisitados = new ArrayList<>();
+    public List<Cell> lstCells = new ArrayList<>();
     public int valornuevo;
     
     public String dificultad;
@@ -164,7 +165,7 @@ public class VentanaJugar extends javax.swing.JFrame {
             
             ReadPartidaXML reader = new ReadPartidaXML();
             List<Partida> listaPartidas = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
-            List<Cell> lstCells = null;
+            lstCells = null;
             Random random = new Random();
             
             while (indicesVisitados.size()<listaPartidas.size()){
@@ -309,7 +310,7 @@ public class VentanaJugar extends javax.swing.JFrame {
             List<Partida> listaPartidas = reader.parseKenKenPartidas("kenken_partidas3.xml", dificultad);
             
             Partida partida = listaPartidas.get(indiceActual);
-            List <Cell> lstCells = partida.getCells();
+            lstCells = partida.getCells();
             partidaActual = partida;
             
             int i = 1;
@@ -474,8 +475,13 @@ public class VentanaJugar extends javax.swing.JFrame {
 
             } if ("Timer".equals(reloj)){
                 System.out.println("Timer Stop");
-
-        }
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                }
+                resetTimerLabel();
+                btnIniciar.setEnabled(true);
+            }
     }
     
     private void pauseTimerLabel(){
@@ -1138,6 +1144,11 @@ public class VentanaJugar extends javax.swing.JFrame {
 
         btnValidar.setBackground(new java.awt.Color(255, 204, 0));
         btnValidar.setText("VALIDAR JUEGO");
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarActionPerformed(evt);
+            }
+        });
 
         btnIniciar.setBackground(new java.awt.Color(204, 255, 102));
         btnIniciar.setText("INICIAR JUEGO");
@@ -1356,7 +1367,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn11.getText();
         listaJugadas.agregarJugada(0,0,valoranterior);
-        btn11.setText(text); } 
+        btn11.setText(text);
+        btn11.setForeground(Color.black);} 
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
@@ -1364,7 +1376,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn12.getText();
         listaJugadas.agregarJugada(0,1,valoranterior);
-        btn12.setText(text); } 
+        btn12.setText(text);
+        btn12.setForeground(Color.black);} 
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
@@ -1372,7 +1385,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn13.getText();
         listaJugadas.agregarJugada(0,2,valoranterior);
-        btn13.setText(text); }     
+        btn13.setText(text);
+        btn13.setForeground(Color.black);}     
     }//GEN-LAST:event_btn13ActionPerformed
 
     private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
@@ -1380,7 +1394,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn14.getText();
         listaJugadas.agregarJugada(0,3,valoranterior);
-        btn14.setText(text); }   
+        btn14.setText(text);
+        btn14.setForeground(Color.black);}   
     }//GEN-LAST:event_btn14ActionPerformed
 
     private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
@@ -1388,7 +1403,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn15.getText();
         listaJugadas.agregarJugada(0,4,valoranterior);
-        btn15.setText(text); }  
+        btn15.setText(text);
+        btn15.setForeground(Color.black);}  
     }//GEN-LAST:event_btn15ActionPerformed
 
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
@@ -1396,7 +1412,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn16.getText();
         listaJugadas.agregarJugada(0,5,valoranterior);
-        btn16.setText(text); } 
+        btn16.setText(text);
+        btn16.setForeground(Color.black);} 
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
@@ -1404,7 +1421,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn21.getText();
         listaJugadas.agregarJugada(1,0,valoranterior);
-        btn21.setText(text); }  
+        btn21.setText(text);
+        btn21.setForeground(Color.black);}  
     }//GEN-LAST:event_btn21ActionPerformed
 
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
@@ -1412,7 +1430,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn22.getText();
         listaJugadas.agregarJugada(1,1,valoranterior);
-        btn22.setText(text); }  
+        btn22.setText(text);
+        btn22.setForeground(Color.black);}  
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
@@ -1420,7 +1439,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn23.getText();
         listaJugadas.agregarJugada(1,2,valoranterior);
-        btn23.setText(text); }         
+        btn23.setText(text);
+        btn23.setForeground(Color.black);}         
     }//GEN-LAST:event_btn23ActionPerformed
 
     private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
@@ -1428,7 +1448,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn24.getText();
         listaJugadas.agregarJugada(1,3,valoranterior);
-        btn24.setText(text); }    
+        btn24.setText(text);
+        btn24.setForeground(Color.black);}    
     }//GEN-LAST:event_btn24ActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
@@ -1436,7 +1457,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn25.getText();
         listaJugadas.agregarJugada(1,4,valoranterior);
-        btn25.setText(text); }  
+        btn25.setText(text);
+        btn25.setForeground(Color.black);}  
     }//GEN-LAST:event_btn25ActionPerformed
 
     private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn26ActionPerformed
@@ -1444,7 +1466,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn26.getText();
         listaJugadas.agregarJugada(1,5,valoranterior);
-        btn26.setText(text); } 
+        btn26.setText(text);
+        btn26.setForeground(Color.black);} 
     }//GEN-LAST:event_btn26ActionPerformed
 
     private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
@@ -1452,7 +1475,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn31.getText();
         listaJugadas.agregarJugada(2,0,valoranterior);
-        btn31.setText(text); } 
+        btn31.setText(text);
+        btn31.setForeground(Color.black);} 
     }//GEN-LAST:event_btn31ActionPerformed
 
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
@@ -1460,7 +1484,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
        String valoranterior=btn32.getText();
         listaJugadas.agregarJugada(2,1,valoranterior);
-        btn32.setText(text); }  
+        btn32.setText(text);
+        btn32.setForeground(Color.black);}  
     }//GEN-LAST:event_btn32ActionPerformed
 
     private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
@@ -1468,7 +1493,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn33.getText();
         listaJugadas.agregarJugada(2,2,valoranterior);
-        btn33.setText(text); } 
+        btn33.setText(text);
+        btn33.setForeground(Color.black);} 
     }//GEN-LAST:event_btn33ActionPerformed
 
     private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn34ActionPerformed
@@ -1476,7 +1502,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn34.getText();
         listaJugadas.agregarJugada(2,3,valoranterior);
-        btn34.setText(text); }   
+        btn34.setText(text);
+        btn34.setForeground(Color.black);}   
     }//GEN-LAST:event_btn34ActionPerformed
 
     private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn35ActionPerformed
@@ -1484,7 +1511,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn35.getText();
         listaJugadas.agregarJugada(2,4,valoranterior);
-        btn35.setText(text); }   
+        btn35.setText(text);
+        btn35.setForeground(Color.black);}   
     }//GEN-LAST:event_btn35ActionPerformed
 
     private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn36ActionPerformed
@@ -1492,7 +1520,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn36.getText();
         listaJugadas.agregarJugada(2,5,valoranterior);
-        btn36.setText(text);}
+        btn36.setText(text);
+        btn36.setForeground(Color.black);}
     }//GEN-LAST:event_btn36ActionPerformed
 
     private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
@@ -1500,7 +1529,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn41.getText();
         listaJugadas.agregarJugada(3,0,valoranterior);
-        btn41.setText(text); }   
+        btn41.setText(text);
+        btn41.setForeground(Color.black);}   
     }//GEN-LAST:event_btn41ActionPerformed
 
     private void btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn42ActionPerformed
@@ -1508,7 +1538,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn42.getText();
         listaJugadas.agregarJugada(3,1,valoranterior);
-        btn42.setText(text); }   
+        btn42.setText(text);
+        btn42.setForeground(Color.black);}   
     }//GEN-LAST:event_btn42ActionPerformed
 
     private void btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn43ActionPerformed
@@ -1516,7 +1547,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn43.getText();
         listaJugadas.agregarJugada(3,2,valoranterior);
-        btn43.setText(text); } 
+        btn43.setText(text);
+        btn43.setForeground(Color.black);} 
     }//GEN-LAST:event_btn43ActionPerformed
 
     private void btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn44ActionPerformed
@@ -1524,7 +1556,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn44.getText();
         listaJugadas.agregarJugada(3,3,valoranterior);
-        btn44.setText(text); } 
+        btn44.setText(text);
+        btn44.setForeground(Color.black);} 
     }//GEN-LAST:event_btn44ActionPerformed
 
     private void btn45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn45ActionPerformed
@@ -1532,7 +1565,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
        String valoranterior=btn45.getText();
         listaJugadas.agregarJugada(3,4,valoranterior);
-        btn45.setText(text); }    
+        btn45.setText(text);
+        btn45.setForeground(Color.black);}    
     }//GEN-LAST:event_btn45ActionPerformed
 
     private void btn46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn46ActionPerformed
@@ -1540,7 +1574,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn46.getText();
         listaJugadas.agregarJugada(3,5,valoranterior);
-        btn46.setText(text); }    
+        btn46.setText(text);
+        btn46.setForeground(Color.black);}    
     }//GEN-LAST:event_btn46ActionPerformed
 
     private void btn51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn51ActionPerformed
@@ -1548,7 +1583,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn51.getText();
         listaJugadas.agregarJugada(4,0,valoranterior);
-        btn51.setText(text); }  
+        btn51.setText(text);
+        btn51.setForeground(Color.black);}  
     }//GEN-LAST:event_btn51ActionPerformed
 
     private void btn52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn52ActionPerformed
@@ -1556,7 +1592,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn52.getText();
         listaJugadas.agregarJugada(4,1,valoranterior);
-        btn52.setText(text); }  
+        btn52.setText(text);
+        btn52.setForeground(Color.black);}  
     }//GEN-LAST:event_btn52ActionPerformed
 
     private void btn53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn53ActionPerformed
@@ -1564,7 +1601,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn53.getText();
         listaJugadas.agregarJugada(4,2,valoranterior);
-        btn53.setText(text); }  
+        btn53.setText(text);
+        btn53.setForeground(Color.black);}  
     }//GEN-LAST:event_btn53ActionPerformed
 
     private void btn54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn54ActionPerformed
@@ -1572,7 +1610,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn54.getText();
         listaJugadas.agregarJugada(4,3,valoranterior);
-        btn54.setText(text); } 
+        btn54.setText(text);
+        btn54.setForeground(Color.black);} 
     }//GEN-LAST:event_btn54ActionPerformed
 
     private void btn55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn55ActionPerformed
@@ -1580,7 +1619,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn55.getText();
         listaJugadas.agregarJugada(4,4,valoranterior);
-        btn55.setText(text); }  
+        btn55.setText(text);
+        btn55.setForeground(Color.black);}  
     }//GEN-LAST:event_btn55ActionPerformed
 
     private void btn56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn56ActionPerformed
@@ -1588,7 +1628,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn56.getText();
         listaJugadas.agregarJugada(4,5,valoranterior);
-        btn56.setText(text); }  
+        btn56.setText(text);
+        btn56.setForeground(Color.black);}  
     }//GEN-LAST:event_btn56ActionPerformed
 
     private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
@@ -1596,7 +1637,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn61.getText();
         listaJugadas.agregarJugada(5,0,valoranterior);
-        btn61.setText(text); }  
+        btn61.setText(text);
+        btn61.setForeground(Color.black);}  
     }//GEN-LAST:event_btn61ActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
@@ -1604,7 +1646,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn62.getText();
         listaJugadas.agregarJugada(5,1,valoranterior);
-        btn62.setText(text); }  
+        btn62.setText(text);
+        btn62.setForeground(Color.black);}  
     }//GEN-LAST:event_btn62ActionPerformed
 
     private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
@@ -1612,7 +1655,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn63.getText();
         listaJugadas.agregarJugada(5,2,valoranterior);
-        btn63.setText(text); }   
+        btn63.setText(text);
+        btn63.setForeground(Color.black);}   
     }//GEN-LAST:event_btn63ActionPerformed
 
     private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
@@ -1620,7 +1664,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn64.getText();
         listaJugadas.agregarJugada(5,3,valoranterior);
-        btn64.setText(text); }    
+        btn64.setText(text);
+        btn64.setForeground(Color.black);}    
     }//GEN-LAST:event_btn64ActionPerformed
 
     private void btn65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn65ActionPerformed
@@ -1628,7 +1673,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn65.getText();
         listaJugadas.agregarJugada(5,4,valoranterior);
-        btn65.setText(text); }  
+        btn65.setText(text);
+        btn65.setForeground(Color.black);}  
     }//GEN-LAST:event_btn65ActionPerformed
 
     private void btn66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn66ActionPerformed
@@ -1636,7 +1682,8 @@ public class VentanaJugar extends javax.swing.JFrame {
         String text= ""+valornuevo;
         String valoranterior=btn66.getText();
         listaJugadas.agregarJugada(5,5,valoranterior);
-        btn66.setText(text); } 
+        btn66.setText(text);
+        btn66.setForeground(Color.black);} 
     }//GEN-LAST:event_btn66ActionPerformed
 
     private void btnDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshacerActionPerformed
@@ -1777,6 +1824,35 @@ public class VentanaJugar extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_btnReiniciarActionPerformed
+
+    private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
+        for (Cell cell : lstCells){
+            int row = cell.getRow();
+            int column = cell.getColumn();
+            int targetValue = cell.getTargetValue();
+            
+            JButton btnP = lstBotones.get(row).get(column);
+            try{
+                int currentValue = Integer.parseInt(btnP.getText());
+                if (currentValue != targetValue){
+                    JOptionPane.showMessageDialog(rootPane, "Hay errores en la partida!");
+                    btnP.setForeground(Color.red);
+                    return;
+                }
+            } catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(rootPane, "El valor en el botón en " + row + ", " + column + " no es un número válido.");
+                return;
+            }
+        }
+        stopTimerLabel();
+        if (sonido){
+            SoundPlayer victorySound = new SoundPlayer();
+            victorySound.playSound("win.wav");
+            System.out.println("Repro   duciendo win.wav");
+            }
+        JOptionPane.showMessageDialog(rootPane, "Has completado el tablero!");
+        setVisible(false);
+    }//GEN-LAST:event_btnValidarActionPerformed
     
     /**
      * @param args the command line arguments
