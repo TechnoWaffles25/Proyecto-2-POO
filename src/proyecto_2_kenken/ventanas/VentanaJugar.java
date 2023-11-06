@@ -556,12 +556,12 @@ public class VentanaJugar extends javax.swing.JFrame {
         panelBts = new javax.swing.JPanel();
         btnRehacer = new javax.swing.JButton();
         btnDeshacer = new javax.swing.JButton();
-        btnBorrarCasilla = new javax.swing.JButton();
         btnValidar = new javax.swing.JButton();
         btnIniciar = new javax.swing.JButton();
         btnTerminar = new javax.swing.JButton();
         btnReiniciar = new javax.swing.JButton();
         btnOtraPartida = new javax.swing.JButton();
+        btnBorrarCasilla = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1134,14 +1134,6 @@ public class VentanaJugar extends javax.swing.JFrame {
             }
         });
 
-        btnBorrarCasilla.setText("BORRAR CASILLA");
-        buttonGroup1.add(btnBorrarCasilla);
-        btnBorrarCasilla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarCasillaActionPerformed(evt);
-            }
-        });
-
         btnValidar.setBackground(new java.awt.Color(255, 204, 0));
         btnValidar.setText("VALIDAR JUEGO");
         btnValidar.addActionListener(new java.awt.event.ActionListener() {
@@ -1182,31 +1174,38 @@ public class VentanaJugar extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(btnBorrarCasilla);
+        btnBorrarCasilla.setText("BORRAR CASILLA");
+        btnBorrarCasilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarCasillaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBtsLayout = new javax.swing.GroupLayout(panelBts);
         panelBts.setLayout(panelBtsLayout);
         panelBtsLayout.setHorizontalGroup(
             panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBtsLayout.createSequentialGroup()
-                        .addComponent(btnDeshacer, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTerminar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(panelBtsLayout.createSequentialGroup()
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBtsLayout.createSequentialGroup()
                         .addComponent(btnBorrarCasilla, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnValidar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelBtsLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBtsLayout.createSequentialGroup()
                         .addComponent(btnRehacer, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelBtsLayout.createSequentialGroup()
+                        .addComponent(btnDeshacer, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnOtraPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOtraPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         panelBtsLayout.setVerticalGroup(
             panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1218,15 +1217,16 @@ public class VentanaJugar extends javax.swing.JFrame {
                         .addComponent(btnOtraPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnRehacer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTerminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeshacer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDeshacer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnBorrarCasilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBorrarCasilla, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1234,28 +1234,23 @@ public class VentanaJugar extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(btnsIzq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblDificultad)
-                                .addGap(56, 56, 56)
-                                .addComponent(lblReloj)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTiempo))
-                            .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(panelBts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDificultad)
+                        .addGap(56, 56, 56)
+                        .addComponent(lblReloj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTiempo))
+                    .addComponent(boardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelBts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(155, 155, 155)
                 .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1273,7 +1268,7 @@ public class VentanaJugar extends javax.swing.JFrame {
                     .addComponent(btnsDer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(59, 59, 59))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1369,6 +1364,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(0,0,valoranterior);
         btn11.setText(text);
         btn11.setForeground(Color.black);} 
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 0 && cell.getColumn()== 0 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn11.setText(txt);
+           }
+        }
+    }
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
@@ -1378,6 +1383,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(0,1,valoranterior);
         btn12.setText(text);
         btn12.setForeground(Color.black);} 
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 0 && cell.getColumn()== 1 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn12.setText(txt);
+           }
+        }
+    }
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
@@ -1387,6 +1402,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(0,2,valoranterior);
         btn13.setText(text);
         btn13.setForeground(Color.black);}     
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 0 && cell.getColumn()== 2 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn13.setText(txt);
+           }
+        }
+    }
     }//GEN-LAST:event_btn13ActionPerformed
 
     private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
@@ -1396,6 +1421,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(0,3,valoranterior);
         btn14.setText(text);
         btn14.setForeground(Color.black);}   
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 0 && cell.getColumn()== 3 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn14.setText(txt);
+           }
+        }
+    }
     }//GEN-LAST:event_btn14ActionPerformed
 
     private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
@@ -1405,6 +1440,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(0,4,valoranterior);
         btn15.setText(text);
         btn15.setForeground(Color.black);}  
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 0 && cell.getColumn()== 4 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn15.setText(txt);
+           }
+        }
+    }
     }//GEN-LAST:event_btn15ActionPerformed
 
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
@@ -1414,6 +1459,17 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(0,5,valoranterior);
         btn16.setText(text);
         btn16.setForeground(Color.black);} 
+    
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 0 && cell.getColumn()== 5 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn16.setText(txt);
+           }
+        }
+    }
     }//GEN-LAST:event_btn16ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
@@ -1423,6 +1479,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(1,0,valoranterior);
         btn21.setText(text);
         btn21.setForeground(Color.black);}  
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 1 && cell.getColumn()== 0 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn21.setText(txt);
+           }
+        }
+    }
     }//GEN-LAST:event_btn21ActionPerformed
 
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
@@ -1431,7 +1497,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         String valoranterior=btn22.getText();
         listaJugadas.agregarJugada(1,1,valoranterior);
         btn22.setText(text);
-        btn22.setForeground(Color.black);}  
+        btn22.setForeground(Color.black);}
+      if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 1 && cell.getColumn()== 1 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn22.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
@@ -1440,7 +1515,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         String valoranterior=btn23.getText();
         listaJugadas.agregarJugada(1,2,valoranterior);
         btn23.setText(text);
-        btn23.setForeground(Color.black);}         
+        btn23.setForeground(Color.black);}   
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 1 && cell.getColumn()== 2 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn23.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn23ActionPerformed
 
     private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
@@ -1450,6 +1534,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(1,3,valoranterior);
         btn24.setText(text);
         btn24.setForeground(Color.black);}    
+      if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 1 && cell.getColumn()== 3 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn24.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn24ActionPerformed
 
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
@@ -1459,6 +1552,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(1,4,valoranterior);
         btn25.setText(text);
         btn25.setForeground(Color.black);}  
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 1 && cell.getColumn()== 4 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn25.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn25ActionPerformed
 
     private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn26ActionPerformed
@@ -1468,6 +1570,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(1,5,valoranterior);
         btn26.setText(text);
         btn26.setForeground(Color.black);} 
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 1 && cell.getColumn()== 5 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn26.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn26ActionPerformed
 
     private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
@@ -1477,6 +1588,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(2,0,valoranterior);
         btn31.setText(text);
         btn31.setForeground(Color.black);} 
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 2 && cell.getColumn()== 0 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn31.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn31ActionPerformed
 
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
@@ -1486,6 +1606,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(2,1,valoranterior);
         btn32.setText(text);
         btn32.setForeground(Color.black);}  
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 2&& cell.getColumn()== 1 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn32.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn32ActionPerformed
 
     private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
@@ -1495,6 +1624,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(2,2,valoranterior);
         btn33.setText(text);
         btn33.setForeground(Color.black);} 
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 2 && cell.getColumn()== 2 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn33.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn33ActionPerformed
 
     private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn34ActionPerformed
@@ -1503,7 +1641,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         String valoranterior=btn34.getText();
         listaJugadas.agregarJugada(2,3,valoranterior);
         btn34.setText(text);
-        btn34.setForeground(Color.black);}   
+        btn34.setForeground(Color.black);}
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 2 && cell.getColumn()== 3 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn34.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn34ActionPerformed
 
     private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn35ActionPerformed
@@ -1512,7 +1659,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         String valoranterior=btn35.getText();
         listaJugadas.agregarJugada(2,4,valoranterior);
         btn35.setText(text);
-        btn35.setForeground(Color.black);}   
+        btn35.setForeground(Color.black);}
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 2 && cell.getColumn()== 4 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn35.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn35ActionPerformed
 
     private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn36ActionPerformed
@@ -1522,6 +1678,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(2,5,valoranterior);
         btn36.setText(text);
         btn36.setForeground(Color.black);}
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 2 && cell.getColumn()== 5 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn36.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn36ActionPerformed
 
     private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
@@ -1531,6 +1696,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(3,0,valoranterior);
         btn41.setText(text);
         btn41.setForeground(Color.black);}   
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 3 && cell.getColumn()== 0 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn41.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn41ActionPerformed
 
     private void btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn42ActionPerformed
@@ -1540,6 +1714,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(3,1,valoranterior);
         btn42.setText(text);
         btn42.setForeground(Color.black);}   
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 3 && cell.getColumn()== 1 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn42.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn42ActionPerformed
 
     private void btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn43ActionPerformed
@@ -1549,6 +1732,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(3,2,valoranterior);
         btn43.setText(text);
         btn43.setForeground(Color.black);} 
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 3 && cell.getColumn()== 2 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn43.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn43ActionPerformed
 
     private void btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn44ActionPerformed
@@ -1558,6 +1750,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(3,3,valoranterior);
         btn44.setText(text);
         btn44.setForeground(Color.black);} 
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 3 && cell.getColumn()== 3 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn44.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn44ActionPerformed
 
     private void btn45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn45ActionPerformed
@@ -1566,7 +1767,16 @@ public class VentanaJugar extends javax.swing.JFrame {
        String valoranterior=btn45.getText();
         listaJugadas.agregarJugada(3,4,valoranterior);
         btn45.setText(text);
-        btn45.setForeground(Color.black);}    
+        btn45.setForeground(Color.black);}
+if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 3 && cell.getColumn()== 4 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn45.setText(txt);
+           }
+        }}    
     }//GEN-LAST:event_btn45ActionPerformed
 
     private void btn46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn46ActionPerformed
@@ -1576,6 +1786,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(3,5,valoranterior);
         btn46.setText(text);
         btn46.setForeground(Color.black);}    
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 3 && cell.getColumn()== 5 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn46.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn46ActionPerformed
 
     private void btn51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn51ActionPerformed
@@ -1585,6 +1804,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(4,0,valoranterior);
         btn51.setText(text);
         btn51.setForeground(Color.black);}  
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 4 && cell.getColumn()== 0 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn51.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn51ActionPerformed
 
     private void btn52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn52ActionPerformed
@@ -1594,6 +1822,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(4,1,valoranterior);
         btn52.setText(text);
         btn52.setForeground(Color.black);}  
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 4 && cell.getColumn()== 1 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn52.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn52ActionPerformed
 
     private void btn53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn53ActionPerformed
@@ -1602,7 +1839,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         String valoranterior=btn53.getText();
         listaJugadas.agregarJugada(4,2,valoranterior);
         btn53.setText(text);
-        btn53.setForeground(Color.black);}  
+        btn53.setForeground(Color.black);}
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 4 && cell.getColumn()== 2 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn53.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn53ActionPerformed
 
     private void btn54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn54ActionPerformed
@@ -1612,6 +1858,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(4,3,valoranterior);
         btn54.setText(text);
         btn54.setForeground(Color.black);} 
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 4 && cell.getColumn()== 3 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn54.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn54ActionPerformed
 
     private void btn55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn55ActionPerformed
@@ -1621,6 +1876,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(4,4,valoranterior);
         btn55.setText(text);
         btn55.setForeground(Color.black);}  
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 4 && cell.getColumn()== 4 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn55.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn55ActionPerformed
 
     private void btn56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn56ActionPerformed
@@ -1630,6 +1894,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(4,5,valoranterior);
         btn56.setText(text);
         btn56.setForeground(Color.black);}  
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 4 && cell.getColumn()== 5 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn56.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn56ActionPerformed
 
     private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
@@ -1638,7 +1911,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         String valoranterior=btn61.getText();
         listaJugadas.agregarJugada(5,0,valoranterior);
         btn61.setText(text);
-        btn61.setForeground(Color.black);}  
+        btn61.setForeground(Color.black);}
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 5 && cell.getColumn()== 0 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn61.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn61ActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
@@ -1648,6 +1930,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(5,1,valoranterior);
         btn62.setText(text);
         btn62.setForeground(Color.black);}  
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 5 && cell.getColumn()== 1 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn62.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn62ActionPerformed
 
     private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
@@ -1656,7 +1947,16 @@ public class VentanaJugar extends javax.swing.JFrame {
         String valoranterior=btn63.getText();
         listaJugadas.agregarJugada(5,2,valoranterior);
         btn63.setText(text);
-        btn63.setForeground(Color.black);}   
+        btn63.setForeground(Color.black);}
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 5 && cell.getColumn()== 2 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn63.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn63ActionPerformed
 
     private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
@@ -1666,6 +1966,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(5,3,valoranterior);
         btn64.setText(text);
         btn64.setForeground(Color.black);}    
+     if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 5 && cell.getColumn()== 3 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn64.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn64ActionPerformed
 
     private void btn65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn65ActionPerformed
@@ -1675,6 +1984,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(5,4,valoranterior);
         btn65.setText(text);
         btn65.setForeground(Color.black);}  
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 5 && cell.getColumn()== 4 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn65.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn65ActionPerformed
 
     private void btn66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn66ActionPerformed
@@ -1684,6 +2002,15 @@ public class VentanaJugar extends javax.swing.JFrame {
         listaJugadas.agregarJugada(5,5,valoranterior);
         btn66.setText(text);
         btn66.setForeground(Color.black);} 
+    if (btnBorrarCasilla.isSelected()){
+        for (Cell cell : lstCells){
+           if (cell.getRow()== 5 && cell.getColumn()== 5 ){
+                int jtv = cell.getJailTargetValue();
+                char operation = cell.getOperation();
+                String txt = Integer.toString(jtv) + operation;
+                btn66.setText(txt);
+           }
+        }}
     }//GEN-LAST:event_btn66ActionPerformed
 
     private void btnDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshacerActionPerformed
@@ -1797,12 +2124,6 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnOtraPartidaActionPerformed
 
-    private void btnBorrarCasillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarCasillaActionPerformed
-        SoundPlayer victorySound = new SoundPlayer();
-        victorySound.playSound("win.wav");
-        System.out.println("Reproduciendo win.wav");
-    }//GEN-LAST:event_btnBorrarCasillaActionPerformed
-
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
         int confirm = JOptionPane.showConfirmDialog(rootPane, "Desea recargar este tablero?");
         if (confirm == JOptionPane.YES_OPTION){
@@ -1853,6 +2174,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Has completado el tablero!");
         setVisible(false);
     }//GEN-LAST:event_btnValidarActionPerformed
+
+    private void btnBorrarCasillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarCasillaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBorrarCasillaActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1927,7 +2252,7 @@ public class VentanaJugar extends javax.swing.JFrame {
     private javax.swing.JButton btn64;
     private javax.swing.JButton btn65;
     private javax.swing.JButton btn66;
-    private javax.swing.JButton btnBorrarCasilla;
+    private javax.swing.JToggleButton btnBorrarCasilla;
     private javax.swing.JButton btnDeshacer;
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnOtraPartida;
