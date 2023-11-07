@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyecto_2_kenken.classes;
 
 import javax.swing.JButton;
 /**
- *
- * @author amontero
+ * clase que almacena los datos de cada celda que se encuentra en el tablero en juego 
+ * @author Alejandro Montero, Fabricio Monge
  */
 public class Cell extends JButton{
     private int jailTargetValue;
@@ -17,7 +14,14 @@ public class Cell extends JButton{
     private int targetValue;
     private int currentValue;
     
-    
+    /**
+     * constructor de celda
+     * @param pJailTargetVal el valor al que se desea llegar
+     * @param pOp operacion
+     * @param pRow fila
+     * @param pCol columna
+     * @param pVal valor que debe tener la casilla
+     */
     public Cell (int pJailTargetVal, char pOp, int pRow, int pCol, int pVal){
         jailTargetValue = pJailTargetVal;
         operation = pOp;

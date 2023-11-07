@@ -5,7 +5,10 @@ import java.io.File;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import proyecto_2_kenken.ventanas.*;
-
+/**
+ * Clase de interfaz gráfica para el menú principal
+ * @author Alejandro Montero, Fabricio Monge 
+ */
 public class MenuPrincipal extends javax.swing.JFrame {
 
     public MenuPrincipal() {
@@ -98,14 +101,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * crea la ventana de juego
+ * @param evt click
+ */
     private void windowJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowJugarActionPerformed
         SwingUtilities.invokeLater(() -> {
             VentanaJugar ventana = new VentanaJugar();
             ventana.setVisible(true);
         });
     }//GEN-LAST:event_windowJugarActionPerformed
-
+/**
+ * crea la ventana de configuracion y despliega un menú de confirmación antes de mostrarla
+ * @param evt click
+ */
     private void windowConfig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowConfig1ActionPerformed
         File configdat = new File("config.dat");
         if (configdat.exists()){
@@ -124,7 +133,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_windowConfig1ActionPerformed
-
+/**
+ * main de la clase, hace la ventana visible
+ * @param args sin especificación 
+ */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

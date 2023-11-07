@@ -2,7 +2,10 @@ package proyecto_2_kenken;
 
 import java.io.Serializable;
 import java.time.Duration;
-
+/**
+ * Clase de cofiguracion del programa
+ * @author Alejandro Monter, Fabricio Monge 
+ */
 public class Data implements Serializable{
     private static final long serialVersionUID = 123456789L;
     private final String dificultad;
@@ -10,7 +13,14 @@ public class Data implements Serializable{
     private final boolean posicion;
     private final boolean sonido;
     private final Duration duration;
-    
+    /**
+     * constructor
+     * @param pDificultad dificultad de juego
+     * @param pReloj para usar un reloj
+     * @param pPosicion posicion de casillas de valores
+     * @param pSonido si se decide usar sonidos
+     * @param pDuration duracion de tiempo
+     */
     public Data(String pDificultad, String pReloj, boolean pPosicion, boolean pSonido, Duration pDuration){
         dificultad = pDificultad;
         reloj = pReloj;

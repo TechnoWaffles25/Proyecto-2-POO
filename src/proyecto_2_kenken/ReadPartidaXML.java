@@ -9,8 +9,17 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import proyecto_2_kenken.classes.*;
-
+/**
+ * clase que se encarga de leer el archivo xml con partidas y hace una lista de partidas correspondiente a la dificultad
+ * @author Alejandro Montero, Fabricio Monge 
+ */
 public class ReadPartidaXML {
+    /**
+     *  crea una lista de objetos Partida, con las celdas y los valores correspondientes
+     * @param fileName nombre del archivo de partidas
+     * @param difficulty dificultad escogida
+     * @return  no retorna nada
+     */
     public List<Partida> parseKenKenPartidas(String fileName, String difficulty) {
         try {
             File xmlFile = new File(fileName);

@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyecto_2_kenken;
 
 import java.io.FileInputStream;
@@ -11,12 +8,14 @@ import java.io.Serializable;
 import java.time.Duration;
 
 /**
- *
- * @author amontero
+ * clase utilizada para leer la configuracion que se utilizará para el juego de KenKen
+ * @author Alejandro Montero, Fabricio Monge 
  */
 public class ReadConfig {
     private Data config;
-    
+    /**
+     * envía la configuracion escogida, y almacenada en un objeto Data a un archivo de configuración.
+     */
     public void readConfiguration() {
         try (FileInputStream fileInputStream = new FileInputStream("config.dat");
              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {

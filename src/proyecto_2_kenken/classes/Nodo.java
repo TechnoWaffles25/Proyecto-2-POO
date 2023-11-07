@@ -5,8 +5,8 @@
 package proyecto_2_kenken.classes;
 
 /**
- *
- * @author fabri
+ * clase de nodo, utilizada para crear una nueva lista
+ * @author Alejandro Montero, Fabricio Monge 
  */
 public class Nodo {
     private String valoranterior;
@@ -14,7 +14,12 @@ public class Nodo {
     private int row;
     public Nodo predecesor;
     public Nodo sucesor;
-    
+    /**
+     * constructor
+     * @param columna columna
+     * @param fila fila
+     * @param numerocambiado numero que se cambió al hacer la jugada 
+     */
     Nodo(int columna, int fila, String numerocambiado){
         coll=columna;
         row=fila;

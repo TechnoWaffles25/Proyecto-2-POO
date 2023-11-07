@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 import proyecto_2_kenken.Data;
 
 /**
- *
- * @author Ale
+ * clae que contiene la interfaz gráfica de la configuración de juego
+ * @author Alejandro Montero, Fabricio Monge 
  */
 public class MenuConfiguracion extends javax.swing.JFrame {
 
@@ -433,7 +433,10 @@ public class MenuConfiguracion extends javax.swing.JFrame {
     private void toggleSonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toggleSonidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_toggleSonidoActionPerformed
-
+/**
+ * inicia el contador de cronómetro
+ * @param evt click
+ */
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         if (comboReloj.getSelectedIndex() == 0) {
         System.out.println("Cronometro inicio");
@@ -494,7 +497,10 @@ public class MenuConfiguracion extends javax.swing.JFrame {
     private void btnPausarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPausarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPausarActionPerformed
-
+/**
+ * detiene el cronómetro 
+ * @param evt click
+ */
     private void btnDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetenerActionPerformed
         if (comboReloj.getSelectedIndex() == 0){
                 System.out.println("Cronometro Stop");
@@ -528,7 +534,10 @@ public class MenuConfiguracion extends javax.swing.JFrame {
         String tiempoStr = String.format("%02d:%02d:%02d", hours, minutes, seconds);
         lblTiempo.setText(tiempoStr);
     }
-    
+/**
+ * define que tipo de modalidad de tiempo usar
+ * @param evt escoger una opción
+ */    
     private void comboRelojActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRelojActionPerformed
         if (comboReloj.getSelectedIndex() == 0){
             System.out.println("Seleccionado Cronometro");
@@ -586,7 +595,10 @@ public class MenuConfiguracion extends javax.swing.JFrame {
             resetTimerLabel();
         }
     }//GEN-LAST:event_comboRelojActionPerformed
-
+/**
+ * cierra la ventana de configuracion y guarda la configuracion seleccionada
+ * @param evt click 
+ */
     private void btnSALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSALIRActionPerformed
         dificultad = (String) comboDificultad.getSelectedItem();
         reloj = (String) comboReloj.getSelectedItem();
@@ -606,21 +618,30 @@ public class MenuConfiguracion extends javax.swing.JFrame {
             }
             setVisible(false);
     }//GEN-LAST:event_btnSALIRActionPerformed
-
+/**
+ * set de horas para un timer
+ * @param evt seleccionar una hora
+ */
     private void comboHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboHorasActionPerformed
         String selectedHora = (String) comboHoras.getSelectedItem(); // Get the selected item as a String
         horas = Integer.parseInt(selectedHora); // Convert the String to an Integer
         tiempoJuego = Duration.ofHours(horas).plusMinutes(minutos).plusSeconds(segundos);
         System.out.println(tiempoJuego.toString());
     }//GEN-LAST:event_comboHorasActionPerformed
-
+/**
+ * set de minutos para timer
+ * @param evt seleccionar los minutos
+ */
     private void comboMinutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMinutosActionPerformed
         String selectedMinutos = (String) comboMinutos.getSelectedItem(); // Get the selected item as a String
         minutos = Integer.parseInt(selectedMinutos); // Convert the String to an Integer
         tiempoJuego = Duration.ofHours(horas).plusMinutes(minutos).plusSeconds(segundos);
         System.out.println(tiempoJuego.toString());
     }//GEN-LAST:event_comboMinutosActionPerformed
-
+/**
+ * set de segundos para un timer
+ * @param evt seleccionar los segundos
+ */
     private void comboSegundosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSegundosActionPerformed
         String selectedSegundos = (String) comboSegundos.getSelectedItem(); // Get the selected item as a String
         segundos = Integer.parseInt(selectedSegundos); // Convert the String to an Integer
@@ -633,6 +654,7 @@ public class MenuConfiguracion extends javax.swing.JFrame {
     }//GEN-LAST:event_comboLadoActionPerformed
 
     /**
+     * mcrea una nueva ventana de configuración 
      * @param args the command line arguments
      */
     public static void main(String args[]) {

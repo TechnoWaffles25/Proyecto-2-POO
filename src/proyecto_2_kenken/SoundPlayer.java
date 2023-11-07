@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package proyecto_2_kenken;
 
 import javax.sound.sampled.*;
@@ -9,11 +6,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 /**
- *
- * @author amontero
+ * Clase utilizada para reproducir audios en el programa
+ * @author Alejandro Montero, Fabricio Monge
  */
 public class SoundPlayer {
-
+    /**
+     * funcion que abre el audio y lo reproduce en caso de error envia un mensaje en consola
+     * @param pathToSound ruta del audio
+     */
     public void playSound(String pathToSound){
         try {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(pathToSound));

@@ -3,7 +3,10 @@ package proyecto_2_kenken;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+/**
+ * Clase que implementa un cronómetro para su uso dentro del juego
+ * @author Alejandro Montero, Fabricio Monge 
+ */
 public class Cronometro extends JPanel implements ActionListener {
     private static final long serialVersionUID = 1L;
     private JLabel cronometro_lbl;
@@ -46,7 +49,10 @@ public class Cronometro extends JPanel implements ActionListener {
         btn_reset.setEnabled(false);
         add(btn_reset);
     }
-
+/**
+ * Crea un timer para juego y toma las horas, minutos y segundos seleccionados 
+ * @param e sin especificación
+ */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn) {
             try {

@@ -105,7 +105,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnReiniciar.setOpaque(true);
         btnReiniciar.setBorderPainted(false);
     }
-    
+    /**
+     * carga un tablero con una partida
+     * @param dificultad dificultad de juego
+     */
     public void cargarTablero(String dificultad){
             // Creamos las celdas
             sublstBotones.add(btn11);
@@ -248,7 +251,11 @@ public class VentanaJugar extends javax.swing.JFrame {
                 } 
             } 
         }
-    
+    /**
+     * resetea el tablero
+     * @param dificultad dificultad de juego
+     * @param indiceActual partida actual
+     */
     public void resetTablero(String dificultad, int indiceActual){
             // Creamos las celdas
             sublstBotones.add(btn11);
@@ -376,7 +383,9 @@ public class VentanaJugar extends javax.swing.JFrame {
                 } 
             } 
         }
-
+    /**
+     * inicia el reloj de la partida
+     */
     public void startReloj(){
         if ("Cronometro".equals(reloj)){
             System.out.println("Cronometro inicio...");
@@ -1284,79 +1293,118 @@ public class VentanaJugar extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton9ActionPerformed
     String nombre = jToggleButton9.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;     // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton9ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
     String nombre = jToggleButton1.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
     String nombre = jToggleButton7.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton7ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
     String nombre = jToggleButton8.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton8ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton10ActionPerformed
     String nombre = jToggleButton10.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;     // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton10ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton11ActionPerformed
     String nombre = jToggleButton11.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton11ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton12ActionPerformed
     String nombre = jToggleButton12.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton12ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
      String nombre = jToggleButton2.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;// TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton2ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
     String nombre = jToggleButton3.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton3ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
      String nombre = jToggleButton4.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num; // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton4ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
     String nombre = jToggleButton5.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton5ActionPerformed
-
+/**
+ * cambia el valor que se va a asignar en la casilla
+ * @param evt click
+ */
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
     String nombre = jToggleButton6.getText();
     int num=Integer.parseInt(nombre);
     valornuevo = num;  // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton6ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1375,7 +1423,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btn11ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1394,7 +1445,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btn12ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1413,7 +1467,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btn13ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn14ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1432,7 +1489,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btn14ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn15ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1451,7 +1511,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btn15ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn16ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1471,7 +1534,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btn16ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1490,7 +1556,10 @@ public class VentanaJugar extends javax.swing.JFrame {
         }
     }
     }//GEN-LAST:event_btn21ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1508,7 +1577,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn22ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1526,7 +1598,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn23ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn24ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1544,7 +1619,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn24ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn25ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1562,7 +1640,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn25ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn26ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1580,7 +1661,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn26ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1598,7 +1682,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn31ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1616,7 +1703,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn32ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1634,7 +1724,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn33ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn34ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1652,7 +1745,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn34ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn35ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1670,7 +1766,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn35ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn36ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1688,7 +1787,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn36ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn41ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1706,7 +1808,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn41ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn42ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1724,7 +1829,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn42ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn43ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1742,7 +1850,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn43ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn44ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1760,7 +1871,10 @@ public class VentanaJugar extends javax.swing.JFrame {
            }
         }}
     }//GEN-LAST:event_btn44ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn45ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1778,7 +1892,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}    
     }//GEN-LAST:event_btn45ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn46ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1796,7 +1913,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn46ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn51ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1814,7 +1934,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn51ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn52ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1832,7 +1955,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn52ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn53ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1850,7 +1976,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn53ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn54ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1868,7 +1997,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn54ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn55ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1886,7 +2018,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn55ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn56ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1904,7 +2039,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn56ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1922,7 +2060,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn61ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1940,7 +2081,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn62ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1958,7 +2102,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn63ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
      if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1976,7 +2123,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn64ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn65ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -1994,7 +2144,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn65ActionPerformed
-
+/**
+ * logica utilizada para interactuar con los botones dependiendo del caso 
+ * @param evt  click
+ */
     private void btn66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn66ActionPerformed
     if (valornuevo > 0 && valornuevo < 7){    
         String text= ""+valornuevo;
@@ -2012,7 +2165,10 @@ if (btnBorrarCasilla.isSelected()){
            }
         }}
     }//GEN-LAST:event_btn66ActionPerformed
-
+/**
+ * devuleve la casilla ultima casilla con la que se interactuó a su estado anterior
+ * @param evt click en el botón
+ */
     private void btnDeshacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeshacerActionPerformed
         btnDeshacer.setOpaque(true);
         btnDeshacer.setBorderPainted(false);
@@ -2034,7 +2190,10 @@ if (btnBorrarCasilla.isSelected()){
             System.out.println("jugada = null, no se puede deshacer nada");
         }
     }//GEN-LAST:event_btnDeshacerActionPerformed
-
+/**
+ * verifica si hay partidas en la lista de jugadas deshechas y la vuelve a colocar en el tablero
+ * @param evt click en el botón
+ */
     private void btnRehacerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRehacerActionPerformed
         btnRehacer.setOpaque(true);
         btnRehacer.setBorderPainted(false);
@@ -2059,7 +2218,10 @@ if (btnBorrarCasilla.isSelected()){
             System.out.println("jugada = null, no se puede rehacer nada");
         }
     }//GEN-LAST:event_btnRehacerActionPerformed
-
+/**
+ * carga una de las partidas, limpia las listas y muestra el tablero correspondiente
+ * @param evt click en el botón
+ */
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         btnIniciar.setEnabled(false);
         btnTerminar.setEnabled(true);
@@ -2086,7 +2248,10 @@ if (btnBorrarCasilla.isSelected()){
         cargarTablero(dificultad);
         startReloj();
     }//GEN-LAST:event_btnIniciarActionPerformed
-
+/**
+ * cierra la ventana de juego y elimina todo progreso
+ * @param evt click en el botón
+ */
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
         int confirm = JOptionPane.showConfirmDialog(rootPane, "Desea terminar el juego? Su progreso no sera guardado!");
         if (partidaActual != null){
@@ -2101,7 +2266,10 @@ if (btnBorrarCasilla.isSelected()){
         }
         
     }//GEN-LAST:event_btnTerminarActionPerformed
-
+/**
+ *carga una partida nueva y limpia las listas de jugadas
+ * @param evt click en el botón
+ */
     private void btnOtraPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtraPartidaActionPerformed
         int confirm = JOptionPane.showConfirmDialog(rootPane, "Desea cargar otro tablero?");
         if (confirm == JOptionPane.YES_OPTION){
@@ -2123,7 +2291,10 @@ if (btnBorrarCasilla.isSelected()){
             
         }
     }//GEN-LAST:event_btnOtraPartidaActionPerformed
-
+/**
+ * recarga el tablero y limpia las listas de jugadas
+ * @param evt click en el botón
+ */
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
         int confirm = JOptionPane.showConfirmDialog(rootPane, "Desea recargar este tablero?");
         if (confirm == JOptionPane.YES_OPTION){
@@ -2145,7 +2316,10 @@ if (btnBorrarCasilla.isSelected()){
             
         }
     }//GEN-LAST:event_btnReiniciarActionPerformed
-
+/**
+ * valida que las casillas tengan el valor correcto y si hay errores muestra dónde se encuentran
+ * @param evt click en el botón
+ */
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         for (Cell cell : lstCells){
             int row = cell.getRow();
@@ -2180,6 +2354,7 @@ if (btnBorrarCasilla.isSelected()){
     }//GEN-LAST:event_btnBorrarCasillaActionPerformed
     
     /**
+     * crea una nueva ventana de juego
      * @param args the command line arguments
      */
     public static void main(String args[]) {
