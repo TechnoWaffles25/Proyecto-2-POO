@@ -2375,7 +2375,7 @@ if (btnBorrarCasilla.isSelected()){
         File myFile = new File("Manual de Usuario.pdf");
         Desktop.getDesktop().open(myFile);
     } catch (IOException ex) {
-        System.out.println("hola");}
+        System.out.println("error al abrir el manual");}
     }
     }//GEN-LAST:event_jButton1ActionPerformed
     
