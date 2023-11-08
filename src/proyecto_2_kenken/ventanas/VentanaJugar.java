@@ -20,6 +20,8 @@ import proyecto_2_kenken.classes.*;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 /**
  *
  * @author amontero
@@ -107,6 +109,12 @@ public class VentanaJugar extends javax.swing.JFrame {
         
         btnReiniciar.setOpaque(true);
         btnReiniciar.setBorderPainted(false);
+        
+        btnAyuda.setOpaque(true);
+        btnAyuda.setBorderPainted(false);
+        
+        //Icon i = new ImageIcon("borrador.png");
+        //btnBorrarCasilla.setIcon(i);
     }
     /**
      * carga un tablero con una partida
@@ -574,7 +582,7 @@ public class VentanaJugar extends javax.swing.JFrame {
         btnReiniciar = new javax.swing.JButton();
         btnOtraPartida = new javax.swing.JButton();
         btnBorrarCasilla = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1195,11 +1203,11 @@ public class VentanaJugar extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setText("AYUDA");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAyuda.setBackground(new java.awt.Color(0, 153, 153));
+        btnAyuda.setText("AYUDA");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAyudaActionPerformed(evt);
             }
         });
 
@@ -1226,7 +1234,7 @@ public class VentanaJugar extends javax.swing.JFrame {
                 .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnReiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                     .addComponent(btnOtraPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         panelBtsLayout.setVerticalGroup(
@@ -1249,7 +1257,7 @@ public class VentanaJugar extends javax.swing.JFrame {
                     .addGroup(panelBtsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnBorrarCasilla, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
 
@@ -2368,7 +2376,7 @@ if (btnBorrarCasilla.isSelected()){
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBorrarCasillaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
 
     if (Desktop.isDesktopSupported()) {
     try {
@@ -2377,7 +2385,7 @@ if (btnBorrarCasilla.isSelected()){
     } catch (IOException ex) {
         System.out.println("error al abrir el manual");}
     }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAyudaActionPerformed
     
     /**
      * crea una nueva ventana de juego
@@ -2453,6 +2461,7 @@ if (btnBorrarCasilla.isSelected()){
     private javax.swing.JButton btn64;
     private javax.swing.JButton btn65;
     private javax.swing.JButton btn66;
+    private javax.swing.JButton btnAyuda;
     private javax.swing.JToggleButton btnBorrarCasilla;
     private javax.swing.JButton btnDeshacer;
     private javax.swing.JButton btnIniciar;
@@ -2464,7 +2473,6 @@ if (btnBorrarCasilla.isSelected()){
     private javax.swing.JPanel btnsDer;
     private javax.swing.JPanel btnsIzq;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
