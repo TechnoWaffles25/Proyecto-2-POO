@@ -1,7 +1,9 @@
 package proyecto_2_kenken.ventanas;
 
+import java.awt.Desktop;
 import proyecto_2_kenken.ventanas.MenuConfiguracion;
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import proyecto_2_kenken.ventanas.*;
@@ -13,6 +15,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public MenuPrincipal() {
         initComponents();
+        
+        windowJugar.setOpaque(true);
+        windowJugar.setBorderPainted(false);
+        btnAyuda.setOpaque(true);
+        btnAyuda.setBorderPainted(false);
+        btnSalir.setOpaque(true);
+        btnSalir.setBorderPainted(false);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -22,7 +32,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         windowJugar = new javax.swing.JButton();
-        windowConfig1 = new javax.swing.JButton();
+        btnConfig = new javax.swing.JButton();
+        btnAcercaDe = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,7 +45,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("KenKen: Juego Aritmético");
 
-        windowJugar.setBackground(new java.awt.Color(204, 204, 204));
+        windowJugar.setBackground(new java.awt.Color(153, 255, 102));
         windowJugar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         windowJugar.setForeground(new java.awt.Color(51, 51, 51));
         windowJugar.setText("JUGAR");
@@ -42,13 +55,41 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        windowConfig1.setBackground(new java.awt.Color(204, 204, 204));
-        windowConfig1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        windowConfig1.setForeground(new java.awt.Color(51, 51, 51));
-        windowConfig1.setText("CONFIGURACION");
-        windowConfig1.addActionListener(new java.awt.event.ActionListener() {
+        btnConfig.setBackground(new java.awt.Color(204, 204, 204));
+        btnConfig.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnConfig.setForeground(new java.awt.Color(51, 51, 51));
+        btnConfig.setText("CONFIGURACION");
+        btnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                windowConfig1ActionPerformed(evt);
+                btnConfigActionPerformed(evt);
+            }
+        });
+
+        btnAcercaDe.setBackground(new java.awt.Color(204, 204, 204));
+        btnAcercaDe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAcercaDe.setForeground(new java.awt.Color(51, 51, 51));
+        btnAcercaDe.setText("ACERCA DE");
+        btnAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcercaDeActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setBackground(new java.awt.Color(255, 102, 102));
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(51, 51, 51));
+        btnSalir.setText("SALIR");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
+        btnAyuda.setBackground(new java.awt.Color(0, 153, 153));
+        btnAyuda.setText("AYUDA");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaActionPerformed(evt);
             }
         });
 
@@ -61,15 +102,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(140, 140, 140)
                         .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(windowJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(141, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(627, Short.MAX_VALUE)
-                    .addComponent(windowConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(131, 131, 131)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(windowJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(231, 231, 231)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,26 +123,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(windowJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(92, 92, 92)
-                    .addComponent(windowConfig1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(66, Short.MAX_VALUE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -115,7 +162,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
  * crea la ventana de configuracion y despliega un menú de confirmación antes de mostrarla
  * @param evt click
  */
-    private void windowConfig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowConfig1ActionPerformed
+    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
         File configdat = new File("config.dat");
         if (configdat.exists()){
             int showConfirmDialog = JOptionPane.showConfirmDialog(this, "Ya existe una configuracion! Si continua el juego actual sera perdido. Desea continuar?");
@@ -132,7 +179,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_windowConfig1ActionPerformed
+    }//GEN-LAST:event_btnConfigActionPerformed
+
+    private void btnAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcercaDeActionPerformed
+        JOptionPane.showMessageDialog(rootPane, "Informacion del programa"
+                + "\nAutores: Alejandro Montero, Fabricio Monge"
+                + "\nNombre del proyecto: KenKen juego de logica"
+                + "\nFecha de creacion: Viernes 20 de Octubre"
+                + "\nVersion de Java: Java 21 2023-09-19");
+    }//GEN-LAST:event_btnAcercaDeActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
+
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File("Manual de Usuario.pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                System.out.println("error al abrir el manual");}
+        }
+    }//GEN-LAST:event_btnAyudaActionPerformed
 /**
  * main de la clase, hace la ventana visible
  * @param args sin especificación 
@@ -170,9 +240,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcercaDe;
+    private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnConfig;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton windowConfig1;
     private javax.swing.JButton windowJugar;
     // End of variables declaration//GEN-END:variables
 }
